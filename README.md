@@ -1,52 +1,92 @@
-![](./docs/public/og.png)
+# Recharts
 
-# es-toolkit &middot; [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/toss/slash/blob/main/LICENSE) [![codecov](https://codecov.io/gh/toss/es-toolkit/graph/badge.svg?token=8N5S3AR3C7)](https://codecov.io/gh/toss/es-toolkit) [![NPM badge](https://img.shields.io/npm/v/es-toolkit?logo=npm)](https://www.npmjs.com/package/es-toolkit) [![JSR badge](https://jsr.io/badges/@es-toolkit/es-toolkit)](https://jsr.io/@es-toolkit/es-toolkit) [![Discord Badge](https://discord.com/api/guilds/1281071127052943361/widget.png?style=shield)](https://discord.gg/vGXbVjP2nY)
+[![storybook](https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg)](https://recharts.github.io/en-US/storybook)
+[![Build Status](https://github.com/recharts/recharts/workflows/Node.js%20CI/badge.svg)](https://github.com/recharts/recharts/actions)
+[![codecov](https://codecov.io/gh/recharts/recharts/graph/badge.svg?token=Bn6L2hrl8T)](https://codecov.io/gh/recharts/recharts)
+[![npm version](https://badge.fury.io/js/recharts.svg)](http://badge.fury.io/js/recharts)
+[![npm downloads](https://img.shields.io/npm/dm/recharts.svg?style=flat-square)](https://www.npmjs.com/package/recharts)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
 
-English | [한국어](https://github.com/toss/es-toolkit/blob/main/README-ko_kr.md) | [简体中文](https://github.com/toss/es-toolkit/blob/main/README-zh_hans.md) | [日本語](https://github.com/toss/es-toolkit/blob/main/README-ja_jp.md)
+## Introduction
 
-es-toolkit is a state-of-the-art, high-performance JavaScript utility library with a small bundle size and strong type annotations.
+Recharts is a **Redefined** chart library built with [React](https://facebook.github.io/react/) and [D3](http://d3js.org).
 
-- es-toolkit offers a variety of everyday utility functions with modern implementations, such as [debounce](https://es-toolkit.dev/reference/function/debounce.html), [delay](https://es-toolkit.dev/reference/promise/delay.html), [chunk](https://es-toolkit.dev/reference/array/chunk.html), [sum](https://es-toolkit.dev/reference/math/sum.html), and [pick](https://es-toolkit.dev/reference/object/pick.html).
-- Designed with performance in mind, es-toolkit achieves [2-3× better performance](https://es-toolkit.dev/performance.html) in modern JavaScript environments.
-- es-toolkit supports tree shaking out of the box, and [reduces JavaScript code by up to 97%](https://es-toolkit.dev/bundle-size.html) compared to other libraries.
-- es-toolkit offers a complete compatibility layer to seamlessly replace lodash, available as [es-toolkit/compat](https://es-toolkit.dev/compatibility.html).
-- es-toolkit includes built-in TypeScript support, with straightforward yet robust types. It also provides useful type guards such as [isNotNil](https://es-toolkit.dev/reference/predicate/isNotNil.html).
-- es-toolkit is trusted and used by popular open-source projects like [Storybook](https://github.com/storybookjs/storybook/blob/9d862798d666678cc4822e857c00bbd744169ced/code/core/package.json#L358), Recharts, ink, and CKEditor.
-- es-toolkit is battle-tested with 100% test coverage, ensuring reliability and robustness.
+The main purpose of this library is to help you to write charts in React applications without any pain. Main principles of Recharts are:
+
+1. **Simply** deploy with React components.
+2. **Native** SVG support, lightweight with minimal dependencies.
+3. **Declarative** components.
+
+Documentation at [recharts.github.io](https://recharts.github.io) and our [storybook](https://recharts.github.io/en-US/storybook)
+
+Also see [the wiki](https://github.com/recharts/recharts/wiki).
+
+All development is done on the `main` branch. The current latest release and storybook documentation reflects what is on the `release` branch.
 
 ## Examples
 
-```tsx
-// import from '@es-toolkit/es-toolkit' in jsr.
-import { chunk, debounce } from 'es-toolkit';
-
-const debouncedLog = debounce(message => {
-  console.log(message);
-}, 300);
-
-// This call will be debounced
-debouncedLog('Hello, world!');
-
-const array = [1, 2, 3, 4, 5, 6];
-const chunkedArray = chunk(array, 2);
-
-console.log(chunkedArray);
-// Output: [[1, 2], [3, 4], [5, 6]]
+```jsx
+<LineChart width={400} height={400} data={data}>
+  <XAxis dataKey="name" />
+  <Tooltip />
+  <CartesianGrid stroke="#f5f5f5" />
+  <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+  <Line type="monotone" dataKey="pv" stroke="#387908" />
+</LineChart>
 ```
+
+All the components of Recharts are clearly separated. The LineChart is composed of x axis, tooltip, grid, and line items, and each of them is an independent React Component. The clear separation and composition of components is one of the principle Recharts follows.
+
+## Installation
+
+### npm
+
+NPM is the easiest and fastest way to get started using Recharts. It is also the recommended installation method when building single-page applications (SPAs). It pairs nicely with a CommonJS module bundler such as Webpack.
+
+```sh
+# latest stable
+$ npm install recharts react-is
+```
+
+`react-is` needs to match the version of your installed `react` package.
+
+### umd
+
+The UMD build is also available on unpkg.com:
+
+```html
+<script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react-is/umd/react-is.production.min.js"></script>
+<script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+```
+
+Then you can find the library on `window.Recharts`.
 
 ## Contributing
 
-We welcome contribution from everyone in the community. Read below for detailed contribution guide.
+Recharts is open source. If you want to contribute to the project, please read the [CONTRIBUTING.md](/CONTRIBUTING.md)
+to understand how to contribute to the project and [DEVELOPING.md](/DEVELOPING.md) to set up your development
+environment.
 
-[CONTRIBUTING](https://github.com/toss/es-toolkit/blob/main/.github/CONTRIBUTING.md)
+## Thanks
+
+<a href="https://www.chromatic.com/"><img src="https://user-images.githubusercontent.com/321738/84662277-e3db4f80-af1b-11ea-88f5-91d67a5e59f6.png" width="153" height="30" alt="Chromatic" /></a>
+
+Thanks to [Chromatic](https://www.chromatic.com/) for providing the visual testing platform that helps us review UI changes and catch visual regressions.
+
+[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://jb.gg/OpenSourceSupport)
+
+Thanks to JetBrains for providing OSS development license for their IDEs.
+
+Browser testing via [<img src="https://www.lambdatest.com/blue-logo.png"
+width="250"
+height="45"
+alt="LambdaTest"
+/>](https://www.lambdatest.com/?utm_source=recharts&utm_medium=sponsor)
 
 ## License
 
-MIT © Viva Republica, Inc. See [LICENSE](./LICENSE) for details.
+[MIT](http://opensource.org/licenses/MIT)
 
-<a title="Toss" href="https://toss.im">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://static.toss.im/logos/png/4x/logo-toss-reverse.png">
-    <img alt="Toss" src="https://static.toss.im/logos/png/4x/logo-toss.png" width="100">
-  </picture>
-</a>
+Copyright (c) 2015-2024 Recharts Group.

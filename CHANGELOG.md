@@ -1,763 +1,1965 @@
-# es-toolkit Changelog
-
-## Version v1.44.0
-
-Released on January 16th, 2026.
-
-- Added `shouldRetry` option to `retry` function. ([#1585])
-- Added `isEmptyObject` predicate function. ([#1584])
-- Added `isNumber` predicate function.
-- Enhanced error cloning to support `AggregateError`. ([#1563])
-- Implemented collection methods for Maps and Sets.
-- Added bundle size analysis and visualization components to docs. ([#1564])
-- Fixed `flattenObject` to retain empty objects and arrays.
-- Enhanced type safety for `clone` function.
-- Fixed `clone` error when cloning object with null prototype. ([#1570])
-- Fixed array function callbacks to include index and array parameters. ([#1561])
-- Fixed `compat/cloneDeep` and `cloneDeepWith` to clone null-prototype objects as regular objects. ([#1562])
-- Fixed `compat/clamp` to ensure consistency with lodash. ([#1555])
-- Simplified `intersection` filter callback for consistency. ([#1582])
-- Fixed incorrect function names and output in `cloneDeep` JSDoc examples. ([#1583])
-
-We sincerely thank @raon0211, @dayongkr, @eunwoo-levi, @matt-oakes, @T3sT3ro, and @D-Sketon for their contributions. We appreciate your great efforts!
-
-## Version v1.43.0
+## ⚠️ Next versions change notes are available only on the [GitHub Releases](https://github.com/recharts/recharts/releases) page ⚠️
 
-Released on December 12th, 2025.
+## 2.2.0 (Dec 8, 2022)
 
-- Enhanced `merge` to handle arrays and objects consistently, and to match lodash's behavior with date values and array-like objects. ([#1553], [#1542], [#1548])
-- Fixed `isMatch` and `isMatchWith` to match lodash's behavior.
-- Fixed `intersectionBy` implementation and removed duplicates when the mapper produces the same values. ([#1528])
-- Fixed `throttle` working like debounce.
-- Fixed type inference in `toSnakeCaseKeys`, `toCamelCaseKeys` for edge cases and improved type inference for uppercase keys. ([#1538])
-- Fixed casing utilities (`camelCase`, `kebabCase`, `lowerCase`, `snakeCase`, `startCase`, `upperCase`) to match lodash's behavior. ([#1525])
-- Fixed `compat/template` to disable ES interpolation when custom `interpolate` is provided. ([#1527])
-- Fixed incorrect example in `differenceBy` documentation. ([#1543])
-- Performance improvement: updated `deburr` to use arrays to construct the deburrMap. ([#1526])
+### feat
+
+- Support keyboard navigation in pie chart (#2923)
+- Allow reversing the tooltip direction (#3056)
 
-We sincerely thank @dayongkr, @raon0211, @wo-o29, @Yeom-JinHo, @Copilot, @oshosh, @vbfox, @sukvvon, @sankeyangshu, @D-Sketon, @seo-rii for their contributions. We appreciate your great efforts!
+### fix
+
+- fix rounding leading to hairline gaps (#3075)
+- fix: do not override zero brush end index (#3076)
+- fix: allow dragging brush when the mouse is outside (#3072)
+- fix: add label type to line props (#3068)
+- Ensure LabelList generic extends Data interface (#2954)
+
+## 2.1.16 (Oct 29, 2022)
+
+### fix
+
+- Fix incorrect date in CHAGELOG (#3016)
+- Let formatter function run even when value is falsy (#3026)
+- Fix(Sankey): update tooltip active state by trigger type(hover/click) (#3021)
+- Fix Area's `baseValue` prop (#3013)
+
+## 2.1.15 (Oct 12, 2022)
+
+### fix
+
+- Fix scroll on hover
+- DefaultTooltipContent.tsx Solving type error for entry.value and entry.name
+
+### chore
+
+- Revert D3 version
+
+## 2.1.14 (Sep 7, 2022)
+
+### fix
+
+- Add inactiveShape prop to Pie component (#2900)
+- Revert "chore: move type deps into devDependencies (#2843)" (#2942)
+- Fix typing of default tooltip formatter (#2924)
+- Take letter-spacing and font-size into consideration while rendering ticks (#2898)
+- Add formatter function type to tooltip props (#2916)
+- doc: Update CHANGELOG.md about d3 7.x (#2919)
+
+## 2.1.13 (Jul 26, 2022)
+
+### fix
 
-## Version v1.42.0
+- set animate flag before chart data update (#2911)
+- Error bar domain fix (#2863)
+- fix: fix "recharts@… doesn't provide prop-types, requested by react-smooth" warning (#2895)
 
-Released on November 17th, 2025.
+### chore
 
-- Added new async utilities: `filterAsync`, `flatMapAsync`, `forEachAsync`, `mapAsync`, `reduceAsync`, and `limitAsync` for handling asynchronous operations.
-- Exported `ThrottleOptions` and `DebounceOptions` interfaces for better type support.
-- Fixed `isFinite` to implement type predicate to narrow type to number.
-- Fixed `isSafeInteger` to implement type predicate to narrow type to number.
-- Fixed `omit` to prevent adding index properties to array-like objects.
-- Fixed `mergeWith` to remove unnecessary nullish coalescing for 100% branch coverage.
-- Fixed `compat/updateWith` to remove unreachable code and add prototype pollution test.
-- Updated documentation headings for consistency.
-- Improved test coverage for `compat/mergeWith`, `compat/unset`, `get`, `toMerged`, `mergeWith`, and `compat/intersectionBy` with additional edge cases and security tests.
+- upgrade d3 (#2893)
 
-We sincerely thank @Debbl, @wo-o29, @raon0211, @Yeom-JinHo, @sukvvon, and @D-Sketon for their contributions. We appreciate your great efforts!
+## 2.1.12 (Jun 27, 2022)
 
-## Version v1.41.0
+### fix
 
-Released on October 24th, 2025.
+- update react-smooth version
+- update d3 from 6.x to 7.x it may break some tools like jest
 
-- Enhanced `throttle` to preserve `this` context when called as a method.
-- Added type guard support for `partition` function.
-- Fixed `omit` to support runtime-determined key arrays with proper overloads.
-- Fixed `defaults` in compatibility layer to properly handle undefined and null sources.
-- Fixed `toSnakeCaseKeys` and `toCamelCaseKeys` to correctly return types for non-plain objects.
-- Fixed `toMerged` and `mergeWith` to properly handle shared objects in merge logic.
-- Fixed `compat/union` to support array-like objects.
-- Fixed `compat/updateWith` to use `get` for value retrieval in updater function.
-- Fixed circular import between `isMatch` and `isMatchWith`.
-- Fixed `find` and `findLast` by simplifying logic and removing unnecessary checks.
-- Fixed `takeRight` by improving test coverage and removing redundant checks.
-- Fixed `curry` and `curryRight` by removing unnecessary type assertions.
-- Fixed `isEqualWith` and `mapKeys` by removing unnecessary type assertions.
-- Improved performance for `meanBy` by removing intermediate array creation.
-- Updated build system to use UMD format instead of IIFE for browser builds.
-- Fixed numerous documentation examples across compat modules.
-- Improved test coverage with additional test cases for edge cases and compatibility.
+fix config for jest is to add the following configuration
 
-We sincerely thank @the5thbeatle, @wo-o29, @hwibaski, @manudeli, @raon0211, @dayongkr, @D-Sketon, @yoouungyoung, @Dohun-choi, @sukvvon, @zoulou00, and @sen2y for their contributions. We appreciate your great efforts!
+```javascript
+const path = require('path');
+// took from d3/package.json
+const d3Pkgs = [
+  'd3',
+  'd3-array',
+  'd3-axis',
+  'd3-brush',
+  'd3-chord',
+  'd3-color',
+  'd3-contour',
+  'd3-delaunay',
+  'd3-dispatch',
+  'd3-drag',
+  'd3-dsv',
+  'd3-ease',
+  'd3-fetch',
+  'd3-force',
+  'd3-format',
+  'd3-geo',
+  'd3-hierarchy',
+  'd3-interpolate',
+  'd3-path',
+  'd3-polygon',
+  'd3-quadtree',
+  'd3-random',
+  'd3-scale',
+  'd3-scale-chromatic',
+  'd3-selection',
+  'd3-shape',
+  'd3-time',
+  'd3-time-format',
+  'd3-timer',
+  'd3-transition',
+  'd3-zoom',
+];
 
-## Version v1.40.0
+// option 1 map module to an bundled version of the package which is es5
+const moduleNameMapper = d3Pkgs.reduce((acc, pkg) => {
+  acc[`^${pkg}$`] = path.join(require.resolve(pkg), `../../dist/${pkg}.min.js`);
+  return acc;
+}, {});
 
-Released on October 8th, 2025.
+module.exports = {
+  moduleNameMapper: {
+    // option 1
+    // ...moduleNameMapper
+  },
+  transform: {
+    // match mjs js jsx ts tsx
+    '^.+\\.m?[jt]sx?$': 'babel-jest',
+  },
+  // stop ignore node_modules transform since d3 and others start to put es6 as main of packages
+  transformIgnorePatterns: [
+    // option 2, stop ignore transform on es6 packages
+    `/node_modules/(?!${d3Pkgs.join('|')}|internmap|d3-delaunay|delaunator|robust-predicates)`,
+    // option 3, stop ignore transform on all node_modules
+    // `/node_modules/(?!.*)`,
+  ],
+};
+```
 
-- Enhanced `sumBy` to pass the element index to the `getValue` callback function.
-- Improved performance for `uniq` function.
-- Fixed `cloneDeepWith` to handle runtime errors in environments without Blob support and correctly clone Boolean, Number, and String objects.
-- Fixed `omit` to avoid unnecessary deep cloning, improving performance.
-- Fixed `toCamelCaseKeys` to properly handle PascalCase type conversion.
-- Fixed `toPath` to correctly handle arrays and non-string inputs.
-- Fixed `repeat` to validate and handle invalid repeat counts.
-- Fixed `sortedIndexBy` to properly handle default iteratee.
-- Fixed `some` predicate check to correctly handle null and undefined cases.
-- Fixed compatibility issue in `compat/unset` with nonexistent paths.
-- Fixed several JSDoc issues across multiple functions including return types, parameter descriptions, and method names.
-- Improved documentation clarity and consistency across multiple functions.
-- Enhanced test coverage with additional test cases for compat functions and edge cases.
-- Updated build configuration and CI workflows.
+## 2.1.11 (Jun 24, 2022)
 
-We sincerely thank @wo-o29, @D-Sketon, @HidenLee, @yoouung, @manudeli, @dayongkr, @Li13, @nicklemmon, @sen2y, @miinhho, @raon0211, @joshkel, @jgjgill, @mlnwns, @Dohun-choi, @PinkChampagne17, @sukvvon, @YOUNGHO8762, @caseBread, @Jeongeun-Choi, @artechventure and hoyyChoi for their contributions. We appreciate your great efforts!
+### feat
 
-## Version v1.39.10
+- Adds react `^18.0.0` as valid peerDependency (#2820)
 
-Released on August 17th, 2025.
+## 2.1.10 (May 19, 2022)
 
-- Fixed `defaultsDeep` to properly handle deep merging of objects in arrays
-- Fixed several documentation issues and examples across multiple functions
+### feat
 
-We sincerely thank @wo-o29, @thwlckd, @kilimandzharov, and @dayongkr for their contributions. We appreciate your great efforts!
+- Add ARIA1.2 attributes to the SvgElementPropKeys filter array
+- Added Storybook Badge (#2840)
+- Handling of undefined values and type checks in DefaultTooltipContent
 
-## Version v1.39.9
+### fix
 
-Released on August 10th, 2025.
+- Axis scale=band no longer works as of Recharts 2.x.x (#2742)
 
-- Fixed `mergeWith` to properly handle null values returned from customizer function.
-- Fixed `cloneDeepWith` to properly handle customizer returning null values.
-- Fixed some of the documentation issues.
+### chore
 
-We sincerely thank @raon0211, @joshkel, and @Najeong-Kim for their contributions. We appreciate your great efforts!
+- chore: move type deps into devDependencies (#2843)
 
-## Version v1.39.8
+## 2.1.9 (Feb 10, 2022)
 
-Released on July 25th, 2025.
+### feat
 
-- Aligned the types of `fill`, `pullAll`, `pullAllBy`, `pullAllWith`, `pullAt`, `remove`, and `reverse` in our compatibility library with the latest Lodash types (`@types/lodash` v4.17.20).
+- feat: allow axis domain to accept a callback (#2770)
+- Categorical chart callback types (#2739)
 
-## Version v1.39.7
+### fix
 
-Released on July 9th, 2025.
+- Fixing types in strict mode (#2745) (#2747)
+- Fix: removes overlapping legend for categorical charts (#2752)
+- Categorical chart callback types (#2739)
 
-- Fixed a compatibility issue with Lodash's `debounce` and `throttle` functions.
-- Remove useless source map for reduce bundle size.
-- Fix some of the documentation issues.
+## 2.1.8 (dec 14, 2021)
 
-We sincerely thank @dayongkr, @cobocho, @raon0211, and @D-Sketon for their contributions. We appreciate your great efforts!
+### fix
 
-## Version v1.39.6
+- Must use import to load ES Module (#2658)
 
-Released on July 2th, 2025.
+## 2.1.7 (dec 14, 2021)
 
-- Fixed handling of null/undefined values in `values` function.
-- Fixed type safety in `compat/get` by adding GetFieldType utility type.
+### fix
 
-We sincerely thank @raon0211, @dayongkr, @yhb-flydream, @ssi02014, @JeongHwan-dev, and @guesung for their contributions. We appreciate your great efforts!
+- Treemap do not render depth (#2718 #2719)
+- Update PolarRadiusAxis.tsx (#2720)
 
-## Version v1.39.5
+### chore
 
-Released on June 24th, 2025.
+- Update d3-interpolate, d3-scale and d3-shape (#2707)
 
-- Fixed type compatibility issues between `es-toolkit/compat` and `@types/lodash`.
-- Improved documentation.
+## 2.1.6 (oct 26, 2021)
 
-We thank @raon0211, @dayongkr, @sukvvon, and @yhb-flydream for their contributions.
+### fix
 
-## Version v1.39.4
+- Fix types folder missing
 
-Released on June 21st, 2025.
+## 2.1.5 (oct 15, 2021)
 
-- Fixed prototype pollution issue in es-toolkit to enhance security.
-- Enhanced build system to provide compat/\* functions in CommonJS format by default.
+### fix
 
-We thank @raon0211, and @dayongkr for their contributions.
+- Fixed types for legend events (#2267 #2269)
+- Fix the react-is version (#2670)
+- Fix type declaration errors when tsc (#2675)
+- Fix(build-umd): add webpack output options libraryTarget (#2684)
 
-## Version v1.39.3
+## 2.1.4 (sep 19, 2021)
 
-Released on June 7th, 2025.
+### fix
 
-- Fixed postbuild script to ensure compat function categorization aligns with src directory structure.
+- Fix: ResponsiveContainer makes legend overlapping with chart when re-rendering (#2660)
+- Fix: rendering of a single bar when maxBarSize is absent and barSize is present (#2659)
 
-## Version v1.39.2
+## 2.1.3 (sep 18, 2021)
 
-Released on June 7th, 2025.
+### fix
 
-- Added dual package export support for individual compat functions (e.g., `es-toolkit/compat/add`).
+- fix: Customized component has no key (#2637)
+- Fix XAxis scale property type (#2641)
 
-## Version v1.39.1
+## 2.1.2 (aug 24, 2021)
 
-Released on June 6th, 2025.
+### fix
 
-- Resolved mismatch between named and default exports in compat .d.ts and .js files to improve TypeScript integration.
+- Fixes undefined field reference when optional variables not supplied (#2630)
+- Fix fragment children (#2481)
 
-## Version v1.39.0
+## 2.1.1 (aug 21, 2021)
 
-🎉 Released on June 5th, 2025. 🎉
+### fix
 
-We're thrilled to announce that `es-toolkit/compat` has achieved full compatibility with Lodash! 🎉
+- Fix: responsive container
 
-A huge thank you to all our contributors who made this possible.
+## 2.1.0 (aug 10, 2021)
 
-- Introduced compatibility functions for [defaultsDeep](https://es-toolkit.slash.page/reference/compat/object/defaultsDeep.html), [isMatchWith](https://es-toolkit.slash.page/reference/compat/predicate/isMatchWith.html), [flatMapDepth](https://es-toolkit.slash.page/reference/compat/array/flatMapDepth.html), [flatMapDeep](https://es-toolkit.slash.page/reference/compat/array/flatMapDeep.html), [overArgs](https://es-toolkit.slash.page/reference/compat/function/overArgs.html), [findLastKey](https://es-toolkit.slash.page/reference/compat/object/findLastKey.html) and [truncate](https://es-toolkit.slash.page/reference/compat/string/truncate.html).
-- Enhanced build system to support `es-toolkit/compat/*` module imports.
-- Fixed special functions like `each` to ensure proper functionality.
-- Fixed Deno compatibility issues for `defaultsDeep` function.
-- Fixed import paths in Deno environment.
-- Added benchmark comparing es-toolkit and lodash `identity` function performance.
-- Improved documentation and test coverage for various functions.
+### feat
 
-We sincerely thank @raon0211, @dayongkr, @mreiden, @hwibaski, @shren207, @jiji-hoon96, and @myungjuice for their contributions. We appreciate your great efforts!
+- Wrap ResponsiveContainer with forwardRef
 
-### ⭐️ Special Thanks to Our Amazing Contributors Who Made 100% Compatibility Possible ⭐️
+### fix
 
-@raon0211, @dayongkr, @D-Sketon, @mass2527, @ssi02014, @shren207, @chhw130, @haejunejung, @jsparkdev, @manudeli, @jgjgill, @hyesungoh, @kaehehehe, @filipsobol, @fvsch, @wondonghwi, @seungrodotlee, @bertyhell, @minchodang, @Jeong-Rae, @kangju2000, @juno7803, @wojtekmaj, @mattiacoll, @changwoolab, @po4tion, @gyumong, @choi2021, @mancuoj, @de-novo, @eunhyulkim, @kim-sung-jee, @gs18004, @Hanna922, @Na-hyunwoo, @aken-you, @tanggd, @ho991217, @piquark6046, @jiji-hoon96, @seonghun0828, @pkovzz, @nnnnoel, @noelkim-prestolabs, @minsoo-web, @hautest, @scato3, @l2hyunwoo, @WooWan, @VVSOGI, @k-jeonghee, @knott11, @lukaszkowalik2, @moonheekim0118, @sadobass, @minjongbaek, @umsungjun, @sossost, @sunrabbit123, @Seung-wan, @cruelladevil, @iDevGon, @oror-sine, @1eeminhyeong, @benzyminzy, @BlackWhite2000, @tooooo1, @L2HYUNN, @DonghyunKim98, @dasom-jo, @guesung, @uniqueeest, @KiKoS0, @myungjuice, @seung-juv, @Collection50, @nowethan, @coding-honey, @ariandel-dev, @apeltop, @jch1223, @yhay81, @milooy, @raviqqe, @youznn, @BinskLee, @YEONDG, @shinwonse, @willmanduffy, @vjo, @touhidrahman, @T3sT3ro, @belgattitude, @WISUNGWON, @anaclumos, @hsskey, @BasixKOR, @Kyujenius, @Dohun-choi, @dngur9801, @sanginchun, @westofsky, @DONG-8, @yhmpc, @pbstar, @MoXiaoluo, @uussong, @tuhm1, @tisou1, @spookyuser, @sa02045, @Hotanya, @nia3y, @mreiden, @kms0219kms, @IkumaTadokoro, @hansolbangul, @hainan-612, @hwibaski, @jeongshin, @HoberMin, @ohprettyhak, @gweesin, @FengBuPi, @kyvg, @evan-moon, @chldmsqls34, @kimpuro, @dogagenc, @Duck-98, @redd97, @faner11, @bhollis, @jaehunn, @babay123, @beomxtone, @ankitjha420, @shan-mx, @2skydev, @StyleShit, @confidential-nt, @siddsarkar, @seongminn, @healtheloper, @pnodet, @Gaic4o, @leeminhee119, @leehj322, @kristian240, @kingston, @kim-dongho, @jungwoo3490, @joris-gallot, @jonganebski, @jiwooproity, @moshuying, @jakvbs, @therealjamesjung, @SaeWooKKang and @HyeokjaeLee
+- Fix for recharts issue #1787
+- Add chart type to tooltip payload
 
-## Version v1.38.0
+## 2.0.10 (jul 13, 2021)
 
-Released on May 18th, 2025.
+### feat
 
-- Added compatibility functions for [bindAll](https://es-toolkit.slash.page/reference/compat/util/bindAll.html), [setWith](https://es-toolkit.slash.page/reference/compat/object/setWith.html), [memoize](https://es-toolkit.slash.page/reference/function/memoize.html), [isNative](https://es-toolkit.slash.page/reference/compat/predicate/isNative.html), [invokeMap](https://es-toolkit.slash.page/reference/compat/array/invokeMap.html), [clone](https://es-toolkit.slash.page/reference/object/clone.html), [cloneWith](https://es-toolkit.slash.page/reference/compat/object/cloneWith.html), and [sortedLastIndexOf](https://es-toolkit.slash.page/reference/compat/array/sortedLastIndexOf.html).
-- Enhanced [invariant](https://es-toolkit.slash.page/reference/util/invariant.html) function to accept Error instances and added [assert](https://es-toolkit.slash.page/reference/util/assert.html) alias.
-- Fixed type definitions and empty array handling in [maxBy](https://es-toolkit.slash.page/reference/array/maxBy.html) and [minBy](https://es-toolkit.slash.page/reference/array/minBy.html).
-- Fixed typo 'Partail' to 'Partial' in [findKey](https://es-toolkit.slash.page/reference/object/findKey.html) type annotation.
-- Enhanced [max](https://es-toolkit.slash.page/reference/math/max.html) and [min](https://es-toolkit.slash.page/reference/math/min.html) functions to skip NaN, symbol, and null values, and return undefined when all values are skipped.
-- Fixed sparse array handling in compat functions to match Lodash's behavior.
-- Improved test coverage and documentation for various functions.
-- Fixed various documentation issues and typos.
+- Feat: Allow automated axis padding for "gap" and "no-gap" for barcharts with continuous axis #2457
+- Passthrough position attribute on createLabeledScales
 
-We sincerely thank @myungjuice, @scato3, @uniqueeest, @YEONDG, @shren207, @hyesungoh, @kms0219kms, @minjongbaek, @kristian240, @D-Sketon, @Seung-wan, @jiji-hoon96, @raon0211, and @dayongkr for their contributions. We appreciate your great efforts!
+### fix
 
-## Version v1.37.2
+- fix: barchart for a single data point #2512
+- fix: the bar label type definition #2582
+- fix: show scatter chart tooltip cross cursor #2592
 
-Released on May 4th, 2025.
+## 2.0.9 (mar 24, 2021)
 
-- Fixed an issue in `es-toolkit/compat`'s `throttle` function to match Lodash's behavior by immediately invoking the throttled function when wait time is zero.
+### chore
 
-## Version v1.37.1
+- update test config and webpack, etc
 
-Released on May 3rd, 2025.
+## fix
 
-- Fixed a bug in JSR's `@es-toolkit/es-toolkit` package that prevented importing the `camelCase` function in Deno.
+- fix for missing sankey tooltips, fix #2496
+- added polyfill for ReactResizeDetector, fix #2504
+- fix condition to actually remove the listener, fix #2498
+- fix typing of <Area type /> prop, fix #2471
 
-## Version v1.37.0
+## 2.0.8 (Feb 24, 2021)
 
-Released on May 3rd, 2025.
+### feat
 
-- Introduced compatibility functions for [result](https://es-toolkit.slash.page/reference/compat/object/result.html), [omitBy](https://es-toolkit.slash.page/reference/object/omitBy.html), [xorBy](https://es-toolkit.slash.page/reference/array/xorBy.html), [xorWith](https://es-toolkit.slash.page/reference/array/xorWith.html), [unzipWith](https://es-toolkit.slash.page/reference/array/unzipWith.html), [sampleSize](https://es-toolkit.slash.page/reference/array/sampleSize.html), [transform](https://es-toolkit.slash.page/reference/compat/object/transform.html), [wrap](https://es-toolkit.slash.page/reference/compat/function/wrap.html), [countBy](https://es-toolkit.slash.page/reference/array/countBy.html), and [xor](https://es-toolkit.slash.page/reference/array/xor.html).
-- Added vitest benchmark for [ary](https://es-toolkit.slash.page/reference/function/ary.html) function.
-- Fixed string comparison in [sortBy](https://es-toolkit.slash.page/reference/array/sortBy.html) and [orderBy](https://es-toolkit.slash.page/reference/array/orderBy.html) by removing locale comparison and using ASCII code instead.
-- Fixed type definition in [isBuffer](https://es-toolkit.slash.page/reference/predicate/isBuffer.html).
-- Fixed internal documentation links for Korean and Japanese headings.
-- Improved code readability and documentation for various functions.
-- Prevented circular dependencies by updating import paths in [toCamelCaseKeys](https://es-toolkit.slash.page/reference/object/toCamelCaseKeys.html) and [toSnakeCaseKeys](https://es-toolkit.slash.page/reference/object/toSnakeCaseKeys.html).
+- allow to show tooltip when hover or click bar item for <BarChart /> and <RadialBarChart />
+- add api `getXScales`, `getYScales`, `getXScaleByAxisId`, `getYScaleByAxisId`, `getItemByXY` to chart, fix #2422
+- Add SyncMethod to categorical charts
+- `findAllByType` searches for match inside of a fragment
+- allow to add customized `polarAngles` and `polarRadius` to <PolarGrid />, fix #2452
 
-We sincerely thank @chldmsqls34, @umsungjun, @raon0211, @dayongkr, @shren207, @oror-sine, @L2HYUNN, @D-Sketon, @ariandel-dev, @Jeong-Rae, and @beomxtone for their contributions. We appreciate your great efforts!
+### fix
 
-## Version v1.36.0
+- fix Tooltip receive wrong payload when mouse enter <Line />, .etc, fix #2394
+- fix Treemap tooltip when use `dataKey` to specify value, fix #2428
 
-Released on April 24th, 2025.
+### deps
 
-- Introduced compatibility functions for [groupBy](https://es-toolkit.slash.page/reference/array/groupBy.html), [partial](https://es-toolkit.slash.page/reference/function/partial.html), [partialRight](https://es-toolkit.slash.page/reference/function/partialRight.html), [forEachRight](https://es-toolkit.slash.page/reference/array/forEachRight.html), [forOwnRight](https://es-toolkit.slash.page/reference/compat/object/forOwnRight.html), [forIn](https://es-toolkit.slash.page/reference/compat/object/forIn.html), [forInRight](https://es-toolkit.slash.page/reference/compat/object/forInRight.html), [overEvery](https://es-toolkit.slash.page/reference/compat/util/overEvery.html), [hasIn](https://es-toolkit.slash.page/reference/compat/object/hasIn.html), [pullAt](https://es-toolkit.slash.page/reference/array/pullAt.html), [forOwn](https://es-toolkit.slash.page/reference/compat/object/forOwn.html), [pullAllWith](https://es-toolkit.slash.page/reference/compat/array/pullAllWith.html), [overSome](https://es-toolkit.slash.page/reference/compat/util/overSome.html), [partition](https://es-toolkit.slash.page/reference/array/partition.html), and [flatMap](https://es-toolkit.slash.page/reference/array/flatMap.html).
-- Fixed compatibility issues in [take](https://es-toolkit.slash.page/reference/array/take.html), [takeRight](https://es-toolkit.slash.page/reference/array/takeRight.html), [defaults](https://es-toolkit.slash.page/reference/compat/object/defaults.html), [repeat](https://es-toolkit.slash.page/reference/compat/string/repeat.html), and [words](https://es-toolkit.slash.page/reference/string/words.html) by adding proper guards.
-- Fixed [throttle](https://es-toolkit.slash.page/reference/function/throttle.html) behavior when both leading and trailing options are enabled.
-- Improved performance for [find](https://es-toolkit.slash.page/reference/compat/array/find.html) by removing unnecessary slice operations.
-- Enhanced performance of [toPairs](https://es-toolkit.slash.page/reference/compat/object/toPairs.html) by pre-allocating arrays and using iterator values.
-- Simplified implementation and aligned types with Lodash for [partition](https://es-toolkit.slash.page/reference/array/partition.html).
+- update react-resize-detector to 6.6.0, fix #2431
 
-We sincerely thank @D-Sketon, @raon0211, @dayongkr, @minjongbaek, @seungrodotlee, @mass2527, @uniqueeest, @leehj322, @cruelladevil, @shren207, and @ssi02014 for their contributions. We appreciate your great efforts!
+## 2.0.7 (Feb 18, 2021)
 
-## Version v1.35.0
+### fix
 
-Released on April 16th, 2025.
+- add missed type definition of tickMargin in XAxis, YAxis, fix #2427
+- filter out nil elements of chart
+- ensures `id="undefined"` is not rendered to the DOM when use ResponsiveContainer
+- fix auto scale type of ComposedChart, fix #2403
+- Fix .d.ts types that relay on d3
 
-- Added support for [toCamelCaseKeys](https://es-toolkit.slash.page/reference/object/toCamelCaseKeys.html) and [toSnakeCaseKeys](https://es-toolkit.slash.page/reference/object/toSnakeCaseKeys.html).
-- Added support for custom delay function based on attempts in [retry](https://es-toolkit.slash.page/reference/function/retry.html).
-- Introduced compatibility functions for [at](https://es-toolkit.slash.page/reference/array/at.html) (array), [split](https://es-toolkit.slash.page/reference/compat/string/split.html), [shuffle](https://es-toolkit.slash.page/reference/array/shuffle.html), [zipWith](https://es-toolkit.slash.page/reference/array/zipWith.html), [zipObject](https://es-toolkit.slash.page/reference/array/zipObject.html), [keyBy](https://es-toolkit.slash.page/reference/array/keyBy.html), [assign](https://es-toolkit.slash.page/reference/compat/object/assign.html), [assignInWith](https://es-toolkit.slash.page/reference/compat/object/assignInWith.html), [assignWith](https://es-toolkit.slash.page/reference/compat/object/assignWith.html), [update](https://es-toolkit.slash.page/reference/compat/object/update.html), [updateWith](https://es-toolkit.slash.page/reference/compat/object/updateWith.html), [uniqWith](https://es-toolkit.slash.page/reference/array/uniqWith.html), [unionBy](https://es-toolkit.slash.page/reference/array/unionBy.html), [unionWith](https://es-toolkit.slash.page/reference/array/unionWith.html), [takeWhile](https://es-toolkit.slash.page/reference/array/takeWhile.html), [sortedLastIndex](https://es-toolkit.slash.page/reference/compat/array/sortedLastIndex.html), [sortedLastIndexBy](https://es-toolkit.slash.page/reference/compat/array/sortedLastIndexBy.html), [toPairs](https://es-toolkit.slash.page/reference/compat/object/toPairs.html), [toPairsIn](https://es-toolkit.slash.page/reference/compat/object/toPairsIn.html), [cond](https://es-toolkit.slash.page/reference/compat/util/cond.html), [over](https://es-toolkit.slash.page/reference/compat/util/over.html), [functions](https://es-toolkit.slash.page/reference/compat/object/functions.html), and [create](https://es-toolkit.slash.page/reference/compat/object/create.html) in `es-toolkit/compat`.
-- Fixed Lodash compatibility issues in [pick](https://es-toolkit.slash.page/reference/object/pick.html) and [pickBy](https://es-toolkit.slash.page/reference/object/pickBy.html).
+## 2.0.6 (Feb 08, 2021)
 
-We sincerely thank @shren207, @kim-sung-jee, @HyeokjaeLee, @Jeong-Rae, @D-Sketon, @jsparkdev, @wojtekmaj, @FengBuPi, @oror-sine, @L2HYUNN, @gs18004, @ohprettyhak, and @kimpuro for their contributions. We appreciate your great efforts!
+### fix
 
-## Version v1.34.1
+- fix types error in npm pkg, fix #2398
 
-Released on March 27th, 2025.
+## 2.0.5 (Feb 08, 2021)
 
-- Fixed a bug in [isBrowser](https://es-toolkit.slash.page/reference/predicate/isBrowser.html) and [isNode](https://es-toolkit.slash.page/reference/predicate/isNode.html) that caused them to not work properly in Deno environments.
+### feat
 
-## Version v1.34.0
+- defer when syncing to other charts
 
-Released on March 27th, 2025.
+### fix
 
-- Added support for [isBrowser](https://es-toolkit.slash.page/reference/predicate/isBrowser.html), [isNode](https://es-toolkit.slash.page/reference/predicate/isNode.html), [attempt](https://es-toolkit.slash.page/reference/util/attempt.html), [attemptAsync](https://es-toolkit.slash.page/reference/util/attemptAsync.html).
-- Introduced compatibility functions for [functionsIn](https://es-toolkit.slash.page/reference/compat/object/functionsIn.html), [meanBy](https://es-toolkit.slash.page/reference/math/meanBy.html), [minBy](https://es-toolkit.slash.page/reference/math/minBy.html), [mean](https://es-toolkit.slash.page/reference/math/mean.html), [sortedIndexOf](https://es-toolkit.slash.page/reference/compat/array/sortedIndexOf.html).
-- Fixed compatibility with lodash for [set](https://es-toolkit.slash.page/reference/compat/object/set.html), [add](https://es-toolkit.slash.page/reference/compat/math/add.html), [subtract](https://es-toolkit.slash.page/reference/compat/math/subtract.html).
+- Fix Customized component types
+- fix child event not dispatched, fix #2414
 
-We sincerely thank @dayongkr, @D-Sketon, @seongminn, @Kyujenius for their contributions. We appreciate your great efforts!
+## 2.0.4 (Jan 27, 2021)
 
-## Version v1.33.0
+### feat
 
-Released on March 9th, 2025.
+- add maxLines prop to Text component
 
-- Added support for [reverseString](https://es-toolkit.slash.page/reference/string/reverseString.html) and [isJSON](https://es-toolkit.slash.page/reference/predicate/isJSON.html).
-- Introduced compatibility functions for [pullAllBy](https://es-toolkit.slash.page/reference/compat/array/pullAllBy.html), [intersectionWith](https://es-toolkit.slash.page/reference/array/intersectionWith.html), [findLast](https://es-toolkit.slash.page/reference/compat/array/findLast.html), [reduce](https://es-toolkit.slash.page/reference/compat/array/reduce.html), [reduceRight](https://es-toolkit.slash.page/reference/compat/array/reduceRight.html), [divide](https://es-toolkit.slash.page/reference/compat/math/divide.html), [values](https://es-toolkit.slash.page/reference/compat/object/values.html), [valuesIn](https://es-toolkit.slash.page/reference/compat/object/valuesIn.html), [maxBy](https://es-toolkit.slash.page/reference/compat/math/maxBy.html), and [pickBy](https://es-toolkit.slash.page/reference/compat/object/pickBy.html).
-- Fixed package exports on React Native so that `es-toolkit` can be used in React Native projects.
-- Fixed a bug in [sum](https://es-toolkit.slash.page/reference/math/sum.html) where passing `undefined` values like `sum([undefined, 1, 2, 3])` resulted in `NaN`, which was different from lodash.
-- Fixed a bug in [assignIn](https://es-toolkit.slash.page/reference/compat/object/assignIn.html) that didn't assign keys with undefined values.
+### fix
 
-## Version v1.32.0
+- Add `payload` to `Payload` interface
+- prevent rerender errors in ResponsiveContainer
+- Add PieLabel, PieLabelRenderProps types
 
-Released on January 30th, 2025.
+### deps
 
-- Added support for [Semaphore](https://es-toolkit.slash.page/reference/promise/Semaphore.html), [Mutex](https://es-toolkit.slash.page/reference/promise/Mutex.html), [isPromise](https://es-toolkit.slash.page/reference/predicate/isPromise.html), and [retry](https://es-toolkit.slash.page/reference/function/retry.html).
-- Introduced compatibility functions for [multiply](https://es-toolkit.slash.page/reference/compat/math/multiply.html), [sortedIndex](https://es-toolkit.slash.page/reference/compat/array/sortedIndex.html), and [sortedIndexBy](https://es-toolkit.slash.page/reference/compat/array/sortedIndexBy.html).
-- Added support for custom delimiters in [flattenObject](https://es-toolkit.slash.page/reference/object/flattenObject.html).
-- Added support for `fromIndex` parameters in [find](https://es-toolkit.slash.page/reference/compat/array/find.html).
-- Fixed a bug in [cloneDeep](https://es-toolkit.slash.page/reference/object/cloneDeep.html) and [cloneDeepWith](https://es-toolkit.slash.page/reference/object/cloneDeepWith.html) that cloned uncloneable objects.
+- Upgrade react-resize-detector(4.x => 5.x) types to match the library
 
-## Version v1.31.0
+## 2.0.3 (Jan 13, 2021)
 
-Released on December 27th, 2024.
+### refactor
 
-- Added support for the [windowed](https://es-toolkit.slash.page/reference/array/windowed.html), [remove](https://es-toolkit.slash.page/reference/array/remove.html) and [asyncNoop](https://es-toolkit.slash.page/reference/function/asyncNoop.html) functions.
-- Introduced compatibility functions for [pullAll](https://es-toolkit.slash.page/reference/compat/array/pullAll.html), [subtract](https://es-toolkit.slash.page/reference/compat/math/subtract.html), [isBuffer](https://es-toolkit.slash.page/reference/predicate/isBuffer.html), and [methodOf](https://es-toolkit.slash.page/reference/compat/util/methodOf.html).
-- Enhanced the performance of [pull](https://es-toolkit.slash.page/reference/array/pull.html) when working with large arrays.
-- Resolved an issue where [reverse](https://es-toolkit.slash.page/reference/compat/array/reverse.html) was not being exported in our compatibility library.
-- Updated [groupBy](https://es-toolkit.slash.page/reference/array/groupBy.html) to properly handle keys like `toString` or `valueOf`.
-- Fixed [merge](https://es-toolkit.slash.page/reference/object/merge.html) to correctly merge values when `target` or any of its values are `null` or `undefined`.
+- use `getDerivedStateFromProps` to replace `UNSAFE_componentWillReceiveProps`, support react@17, #2385
 
-We sincerely thank @T3sT3ro, @D-Sketon, @tuhm1, @willmanduffy, @apeltop, @aken-you, @SaeWooKKang, and @ssi02014 for their contributions. We appreciate your great efforts!
+## 2.0.2 (Jan 12, 2021)
 
-## Version v1.30.1
+### fix
 
-Released on December 14th, 2024.
+- fix lint error
 
-- Fixed [uniqueId](https://es-toolkit.slash.page/reference/compat/util/uniqueId.html) not being exported in our compatibility library.
+## 2.0.1 (Jan 12, 2021)
 
-We sincerely thank @redd97 for their contributions. We appreciate your great efforts!
+### fix
 
-## Version v1.30.0
+- Fix typo, createLabeldScales -> createLabeledScales
+- Prefer Number.isFinite if available
+- fix types error
+- fix(package.json): disable side effects explicitly
 
-Released on December 13th, 2024.
+### feat
 
-- Introduced support for [pull](https://es-toolkit.slash.page/reference/array/pull.html).
-- Added compatibility functions for [map](https://es-toolkit.slash.page/reference/compat/array/map.html), [range](https://es-toolkit.slash.page/reference/math/range.html), [rangeRight](https://es-toolkit.slash.page/reference/math/rangeRight.html), [differenceWith](https://es-toolkit.slash.page/reference/array/differenceWith.html), [nth](https://es-toolkit.slash.page/reference/compat/array/nth.html), [noop](https://es-toolkit.slash.page/reference/function/noop.html), [identity](https://es-toolkit.slash.page/reference/function/identity.html), [keys](https://es-toolkit.slash.page/reference/compat/object/keys.html), [propertyOf](https://es-toolkit.slash.page/reference/compat/object/propertyOf.html), [nthArg](https://es-toolkit.slash.page/reference/compat/function/nthArg.html), [delay](https://es-toolkit.slash.page/reference/promise/delay.html), [toPlainObject](https://es-toolkit.slash.page/reference/compat/util/toPlainObject.html), [unary](https://es-toolkit.slash.page/reference/function/unary.html), [once](https://es-toolkit.slash.page/reference/function/once.html), [after](https://es-toolkit.slash.page/reference/function/after.html), [takeRightWhile](https://es-toolkit.slash.page/reference/array/takeRightWhile.html), [escapeRegExp](https://es-toolkit.slash.page/reference/string/escapeRegExp.html), [unescape](https://es-toolkit.slash.page/reference/string/unescape.html), [upperFirst](https://es-toolkit.slash.page/reference/string/upperFirst.html), [lowerFirst](https://es-toolkit.slash.page/reference/string/lowerFirst.html), [deburr](https://es-toolkit.slash.page/reference/string/deburr.html), [lt](https://es-toolkit.slash.page/reference/util/lt.html), [lte](https://es-toolkit.slash.page/reference/util/lte.html), [toLower](https://es-toolkit.slash.page/reference/compat/string/toLower.html), [invoke](https://es-toolkit.slash.page/reference/compat/util/invoke.html), [method](https://es-toolkit.slash.page/reference/compat/util/method.html), [reverse](https://es-toolkit.slash.page/reference/compat/array/reverse.html), [now](https://es-toolkit.slash.page/reference/compat/util/now.html), [findKey](https://es-toolkit.slash.page/reference/object/findKey.html), [stubArray](https://es-toolkit.slash.page/reference/compat/util/stubArray.html), [stubFalse](https://es-toolkit.slash.page/reference/compat/util/stubFalse.html), [stubObject](https://es-toolkit.slash.page/reference/compat/util/stubObject.html), [stubString](https://es-toolkit.slash.page/reference/compat/util/stubString.html), and [stubTrue](https://es-toolkit.slash.page/reference/compat/util/stubTrue.html).
+- Add aria-hidden to measurementSpan
 
-We sincerely thank @healtheloper, @mass2527, @D-Sketon, @eunhyulkim, @scato3, @Na-hyunwoo, and @dasom-jo for their contributions. We appreciate your great efforts!
+## 2.0.0 (Dec 29, 2020)
 
-## Version v1.29.0
+### fix
 
-Released on December 1st, 2024.
+- fix minAngle for 0 in PieChart, fix ##2237
+- fix type error of <Bar />, fix #2335
+- fix type error of cursor in <Tooltip />, fix #2178
+- fix Props of XAxis, fix #2128
+- export Props of components, fix #2319, #2156, #2203
+- Fix typo, getRectangePath -> getRectanglePath in Rectangle
+- allow Duplicated Category for bar charts not using correct entries for custom tool tips
+- fixing typescript array coalesce
+- fix types error of sankey, fix #2280
+- Fixed SVG path for pie charts when corner radius is set to a value other than zero (#2331)
 
-- Introduced support for [cloneDeepWith](https://es-toolkit.slash.page/reference/object/cloneDeepWith.html).
-- Added a compatibility function for [lastIndexOf](https://es-toolkit.slash.page/reference/compat/array/lastIndexOf.html).
-- Fixed an issue in [flattenObject](https://es-toolkit.slash.page/reference/object/flattenObject.html) where nested objects in arrays were not flattened correctly.
+### feat
 
-We sincerely thank @nnnnoel and @evan-moon for their contributions. We appreciate your great efforts!
+- add props `reversed` to `<Funnel />`
+- add `breakAll` props to `<Text />` to allow break all for chinese
+- fix width of labelList in Funnel; fix #2056, #1866
+- support range RadarChart and add props `connectNulls` to <Radar />, fix #1890
+- add ability to pass in custom legend icon.
 
-## Version v1.28.0
+### deps
 
-Released on November 30th, 2024.
+- upgrade react-resize-detector to 5.2.0 and fix ts error, fix #2300
+- update react-smooth to 1.0.6 to fix bug after upgrading d3
+- upgrade d3 packages
 
-- Added compatibility functions for [gt](https://es-toolkit.slash.page/reference/compat/util/gt.html), [gte](https://es-toolkit.slash.page/reference/compat/util/gte.html), [toArray](https://es-toolkit.slash.page/reference/compat/util/toArray.html), [toUpper](https://es-toolkit.slash.page/reference/compat/string/toUpper.html), [add](https://es-toolkit.slash.page/reference/compat/math/add.html), [assignIn](https://es-toolkit.slash.page/reference/compat/object/assignIn.html) ([extend](https://es-toolkit.slash.page/reference/compat/object/extend.html)), and [isElement](https://es-toolkit.slash.page/reference/compat/predicate/isElement.html).
-- Introduced new compatibility types for `DebouncedFunc`.
-- Enhanced our function types to accept `PropertyKey` instead of just `string` for property keys.
-- Corrected [flatMap](https://es-toolkit.slash.page/reference/array/flatMap.html) to accurately infer return types when the `depth` parameter is omitted.
-- Resolved issues with incorrect types for [partial](https://es-toolkit.slash.page/reference/function/partial.html) and [partialRight](https://es-toolkit.slash.page/reference/function/partialRight.html).
-- Fixed [intersectionBy](https://es-toolkit.slash.page/reference/array/intersectionBy.html), [differenceBy](https://es-toolkit.slash.page/reference/array/differenceBy.html), and [differenceWith](https://es-toolkit.slash.page/reference/array/differenceWith.html) to properly calculate differences between various element types.
-- Ensured that [words](https://es-toolkit.slash.page/reference/string/words.html) is now correctly exported in our compatibility library.
+## 2.0.0-beta.8 (Nov 16, 2020)
 
-We sincerely thank @D-Sketon, @mass2527, @1eeminhyeong, @chhw130, @DONG-8, @filipsobol, @kim-dongho, @nnnnoel, @pbstar, and @jsparkdev for their contributions. We appreciate your great efforts!
+### fix
 
-## Version v1.27.0
+- Add color change for inactive legend label
+- fix stackOffset="sign" in #2292, and add props stackOffset="positive" to fix #1667
 
-Released on November 10th, 2024.
+### refactor
 
-- Added support for [findKey](https://es-toolkit.slash.page/reference/object/findKey.html) and [isSubsetWith](https://es-toolkit.slash.page/reference/array/isSubsetWith.html).
-- Introduced compatibility functions for [words](https://es-toolkit.slash.page/reference/string/words.html), [at](https://es-toolkit.slash.page/reference/array/at.html), [differenceBy](https://es-toolkit.slash.page/reference/array/differenceBy.html), [uniqBy](https://es-toolkit.slash.page/reference/array/uniqBy.html), [forEach](https://es-toolkit.slash.page/reference/compat/array/forEach.html), [each](https://es-toolkit.slash.page/reference/compat/array/each.html), [sum](https://es-toolkit.slash.page/reference/math/sum.html), [sumBy](https://es-toolkit.slash.page/reference/array/sumBy.html), [union](https://es-toolkit.slash.page/reference/array/union.html), [zip](https://es-toolkit.slash.page/reference/array/zip.html), [unzip](https://es-toolkit.slash.page/reference/array/unzip.html), [iteratee](https://es-toolkit.slash.page/reference/compat/util/iteratee.html), [isEmpty](https://es-toolkit.slash.page/reference/compat/predicate/isEmpty.html), and [replace](https://es-toolkit.slash.page/reference/compat/string/replace.html).
-- Fixed a bug in [cloneDeep](https://es-toolkit.slash.page/reference/object/cloneDeep.html) that prevented it from correctly cloning object prototypes.
-- Improved performance for [at](https://es-toolkit.slash.page/reference/array/at.html).
-- Enhanced performance for [toPath](https://es-toolkit.slash.page/reference/compat/util/toPath.html), [get](https://es-toolkit.slash.page/reference/compat/object/get.html), [set](https://es-toolkit.slash.page/reference/compat/object/set.html), [unset](https://es-toolkit.slash.page/reference/compat/object/unset.html), [has](https://es-toolkit.slash.page/reference/compat/object/has.html), [orderBy](https://es-toolkit.slash.page/reference/array/orderBy.html), [chunk](https://es-toolkit.slash.page/reference/array/chunk.html), [difference](https://es-toolkit.slash.page/reference/array/difference.html), [drop](https://es-toolkit.slash.page/reference/array/drop.html), [dropRight](https://es-toolkit.slash.page/reference/array/dropRight.html), [dropWhile](https://es-toolkit.slash.page/reference/array/dropWhile.html), [findLastIndex](https://es-toolkit.slash.page/reference/compat/array/findLastIndex.html), [head](https://es-toolkit.slash.page/reference/array/head.html), [last](https://es-toolkit.slash.page/reference/array/last.html), [sample](https://es-toolkit.slash.page/reference/array/sample.html), [tail](https://es-toolkit.slash.page/reference/array/tail.html), [take](https://es-toolkit.slash.page/reference/array/take.html), and [takeRight](https://es-toolkit.slash.page/reference/array/takeRight.html) in our compatibility library.
+- update `filterSvgElements` and `renderByOrder`
+- Replace core-js polyfill and remove babel-polyfill
 
-We sincerely thank @scato3, @ssi02014, @filipsobol, @mass2527, @Gyumong, @D-Sketon, @dayongkr, @kyvg, @Na-hyunwoo, @kaehehehe, and @bhollis for their contributions. Special thanks to @cruelladevil for improving the documentation. We appreciate your great efforts!
+## 2.0.0-beta.7 (Sep 08, 2020)
 
-## Version v1.26.1
+### fix
 
-Released on October 25th, 2024.
+- Fix flickering tooltip by keeping the isTooltipActive flag from the previous state
+- fix(AreaDot Type): add option to use a function that returns a react element
+- Fix typescript error in polar radar
+- Fix typos in Label.renderCallByParent
+- Add type definition for label prop on XAxis, YAxis and ZAxis
 
-- Fixed a bug in [isMatch](https://es-toolkit.slash.page/reference/compat/predicate/isMatch.html) that did not strictly compare `null` in objects.
+### feat
 
-This version includes contributions from @D-Sketon. Thank you for your valuable contributions!
+- Pass tickFormatter as a prop to customized tick component
+- Allow array value for last data element in Funnel to set bottom width instead of forcing 0
+- Add payloadIndex to cursor props
 
-## Version v1.26.0
+## 2.0.0-beta.6 (May 12, 2020)
 
-Released on October 24th, 2024.
+### fix
 
-- Added support for [invariant](https://es-toolkit.slash.page/reference/util/invariant.html), [identity](https://es-toolkit.slash.page/reference/function/identity.html), [median](https://es-toolkit.slash.page/reference/math/median.html), and [medianBy](https://es-toolkit.slash.page/reference/math/medianBy.html).
-- Added compatibility functions for [template](https://es-toolkit.slash.page/reference/compat/string/template.html), [uniqueId](https://es-toolkit.slash.page/reference/compat/util/uniqueId.html), [intersectionBy](https://es-toolkit.slash.page/reference/array/intersectionBy.html), [orderBy](https://es-toolkit.slash.page/reference/array/orderBy.html), [sortBy](https://es-toolkit.slash.page/reference/array/sortBy.html), and [some](https://es-toolkit.slash.page/reference/array/some.html).
-- Made it possible to use [drop](https://es-toolkit.slash.page/reference/array/drop.html), [dropRight](https://es-toolkit.slash.page/reference/array/dropRight.html), [every](https://es-toolkit.slash.page/reference/compat/array/every.html), [take](https://es-toolkit.slash.page/reference/array/take.html), and [takeRight](https://es-toolkit.slash.page/reference/array/takeRight.html) directly as iteratees, allowing for usage like `arr.map(drop)`.
-- Corrected [merge](https://es-toolkit.slash.page/reference/object/merge.html) to disallow primitive values such as numbers or strings.
+- fix error of Brush when data is empty, but chart width or height or Brush update, fix #2093
+- fix build error , fix #2120
+- fix attrs of <Label />, reverts previous change: now `positionAttrs` is again after `attrs`
+- Get legend wrapper boundingRect to correctly compute legend offset, fix #2062
 
-This version includes contributions from @dayongkr, @Na-hyunwoo, @ssi02014, @kaehehehe, @jakvbs, @D-Sketon, and @seonghun0828. Thank you for your valuable contributions!
+### feat
 
-## Version v1.25.2
+- support customized traveller of Brush, fix #1600
 
-Released on October 16th, 2024.
+## 2.0.0-beta.5 (Mar 26, 2020)
 
-- Fixed a problem with [isJSONValue](https://es-toolkit.slash.page/reference/predicate/isJSONValue.html), [isJSONArray](https://es-toolkit.slash.page/reference/predicate/isJSONArray.html), and [isJSONObject](https://es-toolkit.slash.page/reference/predicate/isJSONObject.html) that led to circular dependencies.
-- Enhanced [flatten](https://es-toolkit.slash.page/reference/array/flatten.html), [flattenDeep](https://es-toolkit.slash.page/reference/array/flattenDeep.html), [flattenDepth](https://es-toolkit.slash.page/reference/compat/array/flattenDepth.html#flattendepth), [slice](https://es-toolkit.slash.page/reference/compat/array/slice.html), and [zipObjectDeep](https://es-toolkit.slash.page/reference/compat/array/zipObjectDeep.html) to work with array-like objects in our compatibility library, ensuring they are fully compatible with lodash.
+### fix
 
-This version includes contributions from @D-Sketon. Thank you for your valuable contributions!
+- fix types of generateCategoricalChart
+- fix position of tooltip when the categorical axis has time scale
+- fix position of tooltip when direction is rtl
+- fix name of Scatter in tooltip
+- Fix outerArcAngle and innerArcAngle when cornerIsExternal == true
+- fix IE 11 supoort because of d3-scale@3.x
 
-## Version v1.25.1
+### feat
 
-Released on October 15th, 2024.
+- add Global setting, include "isSsr"
+- support tooltip trigger by click event
+- add static method `registerSymbol` to Symbols
+- add payload to formatter and labelFormatter in Tooltip
+- allow domain of axis to change the order of categories
 
-- Resolved an issue in [cloneDeep](https://es-toolkit.slash.page/reference/object/cloneDeep.html) that incorrectly copied properties from the `target` when they were read-only.
-- Updated [every](https://es-toolkit.slash.page/reference/compat/array/every.html), [filter](https://es-toolkit.slash.page/reference/compat/array/filter.html), [find](https://es-toolkit.slash.page/reference/compat/array/find.html), [findIndex](https://es-toolkit.slash.page/reference/compat/array/findIndex.html), [findLastIndex](https://es-toolkit.slash.page/reference/compat/array/findLastIndex.html), [indexOf](https://es-toolkit.slash.page/reference/compat/array/indexOf.html), and [join](https://es-toolkit.slash.page/reference/compat/array/join.html) to now accept array-like objects and a `fromIndex` parameter, making them compatible with lodash.
+## 2.0.0-beta.4 (Mar 17, 2020)
 
-This version includes contributions from @D-Sketon. Thank you for your valuable contributions!
+### fix
 
-## Version v1.25.0
+- fix error of <Curve /> when add child to <Line />, fix #2051
+- fix Stack AreaChart when some values is negative, fix #1667
+- fix stack AreaChart when some values is nill, fix #1601
 
-Released on October 14th, 2024.
+### dep
 
-- Added support for [isFile](https://es-toolkit.slash.page/reference/predicate/isFile.html).
-- Added compatibility functions for [escape](https://es-toolkit.slash.page/reference/string/escape.html), [toSafeInteger](https://es-toolkit.slash.page/reference/compat/util/toSafeInteger.html), [intersection](https://es-toolkit.slash.page/reference/array/intersection.html), [sample](https://es-toolkit.slash.page/reference/array/sample.html), [chunk](https://es-toolkit.slash.page/reference/array/chunk.html), [compact](https://es-toolkit.slash.page/reference/array/compact.html), [head](https://es-toolkit.slash.page/reference/array/head.html), [initial](https://es-toolkit.slash.page/reference/array/initial.html), [last](https://es-toolkit.slash.page/reference/array/last.html), [tail](https://es-toolkit.slash.page/reference/array/tail.html), [take](https://es-toolkit.slash.page/reference/array/take.html), [takeRight](https://es-toolkit.slash.page/reference/array/takeRight.html), [uniq](https://es-toolkit.slash.page/reference/array/uniq.html), and [without](https://es-toolkit.slash.page/reference/array/without.html).
-- Enhanced performance for [at](https://es-toolkit.slash.page/reference/array/at.html) and [isPlainObject](https://es-toolkit.slash.page/reference/predicate/isPlainObject.html).
-- Resolved an issue in [cloneDeep](https://es-toolkit.slash.page/reference/object/cloneDeep.html) that prevented it from cloning symbol properties and read-only properties of objects.
-- Fixed a problem in [pick](https://es-toolkit.slash.page/reference/object/pick.html) within our compatibility library that incorrectly added `undefined` for keys that do not exist.
+- Upgrade reduce-css-calc
 
-This version includes contributions from @D-Sketon, @mass2527, @dayongkr, @lukaszkowalik2, @Gyumong, @Dohun-choi, @belgattitude, and @chhw130. Thank you for your valuable contributions!
+### chore
 
-## Version v1.24.0
+- add types
 
-Released on October 7th, 2024.
+## 2.0.0-beta.3 (Mar 13, 2020)
 
-- Added support for [isBlob](https://es-toolkit.slash.page/reference/predicate/isBlob.html) and [isDate](https://es-toolkit.slash.page/reference/predicate/isDate.html).
-- Added compatibility functions for [invertBy](https://es-toolkit.slash.page/reference/compat/object/invertBy.html), [times](https://es-toolkit.slash.page/reference/compat/util/times.html), [constant](https://es-toolkit.slash.page/reference/compat/util/constant.html), [slice](https://es-toolkit.slash.page/reference/compat/array/slice.html), [toLength](https://es-toolkit.slash.page/reference/compat/util/toLength.html), [defaultTo](https://es-toolkit.slash.page/reference/compat/util/defaultTo.html), [dropRightWhile](https://es-toolkit.slash.page/reference/array/dropRightWhile.html), [curryRight](https://es-toolkit.slash.page/reference/function/curryRight.html), [rangeRight](https://es-toolkit.slash.page/reference/math/rangeRight.html), [before](https://es-toolkit.slash.page/reference/function/before.html), [eq](https://es-toolkit.slash.page/reference/compat/util/eq.html), [defaults](https://es-toolkit.slash.page/reference/compat/object/defaults.html), [toDefaulted](https://es-toolkit.slash.page/reference/compat/object/toDefaulted.html), [isArrayBuffer](https://es-toolkit.slash.page/reference/predicate/isArrayBuffer.html), [isSet](https://es-toolkit.slash.page/reference/predicate/isSet.html), and [isMap](https://es-toolkit.slash.page/reference/predicate/isMap.html).
-- Enhanced [difference](https://es-toolkit.slash.page/reference/array/difference.html) to work with Array-like objects, aligning its functionality with lodash's behavior.
-- Improved performance for [pickBy](https://es-toolkit.slash.page/reference/object/pickBy.html) and [omitBy](https://es-toolkit.slash.page/reference/object/omitBy.html).
+### fix
 
-## Version v1.23.0
+- fix range of ReferenceArea of BarChart, fix #2045
+- fix className of axis line, fix ##2024
+- fix ComposedChart when has multiple <Bar/>, fix #2031
+- fix ComposedChart when specify scale of <XAxis />, fix #2010
 
-Released on October 1st, 2024.
+### chore
 
-- Added support for [isEqualWith](https://es-toolkit.slash.page/reference/predicate/isEqualWith.html), [isArrayBuffer](https://es-toolkit.slash.page/reference/predicate/isArrayBuffer.html), [curryRight](https://es-toolkit.slash.page/reference/function/curryRight.html), [isJSONValue](https://es-toolkit.slash.page/reference/predicate/isJSONValue.html), [isJSONObject](https://es-toolkit.slash.page/reference/predicate/isJSONObject.html), [isJSONArray](https://es-toolkit.slash.page/reference/predicate/isJSONArray.html).
-- Fixed a bug in [merge](https://es-toolkit.slash.page/reference/object/merge.html) that copied the reference from the `source` object to the `target` object.
-- Fixed a bug in [includes](https://es-toolkit.slash.page/reference/compat/array/includes.html) that returned `true` for inherited properties.
-- Fixed a bug in [startCase](https://es-toolkit.slash.page/reference/string/startCase.html) and other string methods that did not correctly split the words when using accented letters.
-- Fixed a bug in [filter](https://es-toolkit.slash.page/reference/compat/array/filter.html) that did not provide correct arguments to the predicate function.
-- Fixed a bug in [isMatch](https://es-toolkit.slash.page/reference/compat/predicate/isMatch.html) that did not strictly compare primitive falsy values.
+- update eslint and add .prettierrc
 
-This version includes contributions from @D-Sketon, @wojtekmaj, @mass2527, @chhw130, and @knott11. Thank you for your valuable contributions!
+## 2.0.0-beta.2 (Mar 10, 2020)
 
-## Version v1.22.0
+### fix
 
-Released on September 28th, 2024.
+- Do word line calculation only when needed
+- Fixes arc angles when `cornerIsExternal` is used
+- Invert cartesian label position based on negative values
+- Fix usage of hooks in Tooltip, Label, Legend and Customized
+- Move draging-end listener to the window for brush
+- Fix trigger after mouse leave
+- Added the angle as key which need to be used in the Label align
+- Rewrite index.js to index.ts, update scripts in package.json
 
-- Added support for [flow](https://es-toolkit.slash.page/reference/function/flow.html), [flowRight](https://es-toolkit.slash.page/reference/function/flowRight.html), [isMap](https://es-toolkit.slash.page/reference/predicate/isMap.html), and [isSet](https://es-toolkit.slash.page/reference/predicate/isSet.html).
-- Added compatibility functions for [filter](https://es-toolkit.slash.page/reference/compat/array/filter.html), [includes](https://es-toolkit.slash.page/reference/compat/array/includes.html), [every](https://es-toolkit.slash.page/reference/compat/array/every.html), [flip](https://es-toolkit.slash.page/reference/compat/function/flip.html), and [dropWhile](https://es-toolkit.slash.page/reference/array/dropWhile.html).
+### feat
 
-- Fixed a bug in [throttle](https://es-toolkit.slash.page/reference/function/throttle.html) that prevented it from throttling after the initial `throttleMs`.
-- Fixed a bug in [cloneDeep](https://es-toolkit.slash.page/reference/object/cloneDeep.html) that caused it to not clone the offset and length of `DataView`.
-- Fixed a bug in [clone](https://es-toolkit.slash.page/reference/object/clone.html) that threw an error if `SharedArrayBuffer` is unavailable.
+- Added index to tickFormatter
+- Allow axis line customization through axisLine prop
 
-This version includes contributions from @dayongkr, @k-jeonghee, @D-Sketon, @iDevGon, @mass2527, @wojtekmaj, @jonganebski, @hyesungoh, and @chhw130. Thank you for your valuable contributions!
+## 2.0.0-beta.1 (Dec 03, 2019)
 
-## Version v1.21.0
+### fix
 
-Released on September 25th, 2024.
+- fix error parameters in `appendOffsetOfLegend`
+- fix style of <Area />
 
-- Added support for [constantCase](https://es-toolkit.slash.page/reference/string/constantCase.html) and [isError](https://es-toolkit.slash.page/reference/predicate/isError.html).
-- Added compatibility functions for [pad](https://es-toolkit.slash.page/reference/compat/string/pad.html), [padStart](https://es-toolkit.slash.page/reference/compat/string/padStart.html), [padEnd](https://es-toolkit.slash.page/reference/compat/string/padEnd.html), [defer](https://es-toolkit.slash.page/reference/compat/function/defer.html), [isFinite](https://es-toolkit.slash.page/reference/compat/predicate/isFinite.html), [toNumber](https://es-toolkit.slash.page/reference/compat/math/toNumber.html), [toFinite](https://es-toolkit.slash.page/reference/compat/math/toFinite.html), and [toInteger](https://es-toolkit.slash.page/reference/compat/math/toInteger.html).
-- Improved performance for [flatten](https://es-toolkit.slash.page/reference/array/flatten.html), [isNumber](https://es-toolkit.slash.page/reference/predicate/isNumber.html), [isString](https://es-toolkit.slash.page/reference/predicate/isString.html), [isSymbol](https://es-toolkit.slash.page/reference/predicate/isSymbol.html), [isRegExp](https://es-toolkit.slash.page/reference/predicate/isRegExp.html), and [isBoolean](https://es-toolkit.slash.page/reference/predicate/isBoolean.html).
-- Fixed [compact](https://es-toolkit.slash.page/reference/array/compact.html) to correctly exclude `0n` as a falsey value.
-- Fixed [pick](https://es-toolkit.slash.page/reference/object/pick.html) to not pick nonexistent keys from the original object.
-- Fixed [omit](https://es-toolkit.slash.page/reference/object/omit.html) to accept readonly arrays.
+## 2.0.0-beta.0 (Dec 03, 2019)
 
-This version includes contributions from @hyesungoh, @D-Sketon, @mass2527, @gweesin, @VVSOGI, @coding-honey, @seonghun0828, and @jsparkdev. Thank you for your valuable contributions!
+### feat
 
-## Version v1.20.0
+- Only support react@16
+- Use typescript to rewrite src/
 
-Released on September 20th, 2024.
+## 1.8.5 (Oct 22, 2019)
 
-- Added support for function invocation on leading and trailing edges for [debounce](https://es-toolkit.slash.page/reference/function/debounce.html) and [throttle](https://es-toolkit.slash.page/reference/function/throttle.html).
-- Added compatibility functions for [debounce](https://es-toolkit.slash.page/reference/function/debounce.html), [throttle](https://es-toolkit.slash.page/reference/function/throttle.html), [curry](https://es-toolkit.slash.page/reference/function/curry.html), [isNumber](https://es-toolkit.slash.page/reference/compat/predicate/isNumber.html), and [isNaN](https://es-toolkit.slash.page/reference/compat/predicate/isNaN.html).
-- Improved performance for [at](https://es-toolkit.slash.page/reference/array/at.html), [zip](https://es-toolkit.slash.page/reference/array/zip.html), [zipWith](https://es-toolkit.slash.page/reference/array/zipWith.html), and [drop](https://es-toolkit.slash.page/reference/array/drop.html).
+### fix
 
-## Version v1.19.0
+- revert [PR#1916](https://github.com/recharts/recharts/pull/1916)
+- fix Text update, fix #1914
 
-Released on September 14th, 2024.
+## 1.8.4 (Oct 22, 2019)
 
-- Added support for [isDate](https://es-toolkit.slash.page/reference/predicate/isDate.html), [curry](https://es-toolkit.slash.page/reference/function/curry.html), [upperCase](https://es-toolkit.slash.page/reference/string/upperCase.html).
-- Added compatibility functions for [pick](https://es-toolkit.slash.page/reference/object/pick.html), [omit](https://es-toolkit.slash.page/reference/object/omit.html), [unset](https://es-toolkit.slash.page/reference/compat/object/unset.html), [toPath](https://es-toolkit.slash.page/reference/compat/util/toPath.html), [trim](https://es-toolkit.slash.page/reference/compat/string/trim.html), [trimStart](https://es-toolkit.slash.page/reference/compat/string/trimStart.html), [trimEnd](https://es-toolkit.slash.page/reference/compat/string/trimEnd.html), [isInteger](https://es-toolkit.slash.page/reference/compat/predicate/isInteger.html), [isSafeInteger](https://es-toolkit.slash.page/reference/compat/predicate/isSafeInteger.html), [snakeCase](https://es-toolkit.slash.page/reference/string/snakeCase.html), [startCase](https://es-toolkit.slash.page/reference/string/startCase.html), [lowerCase](https://es-toolkit.slash.page/reference/string/lowerCase.html), [kebabCase](https://es-toolkit.slash.page/reference/string/kebabCase.html), [ceil](https://es-toolkit.slash.page/reference/compat/math/ceil.html), [floor](https://es-toolkit.slash.page/reference/compat/math/floor.html), [round](https://es-toolkit.slash.page/reference/math/round.html).
-- Enhanced [clone](https://es-toolkit.slash.page/reference/object/clone.html) to handle `Buffer`s, `SharedArrayBuffer`s, `File`s, `Blob`s, `TypedArray`s, and `Error`s.
-- Fixed a bug where [mergeWith](https://es-toolkit.slash.page/reference/object/mergeWith.html) did not preserve the original properties of the `target` object.
-- Fixed a bug where [groupBy](https://es-toolkit.slash.page/reference/array/groupBy.html) couldn't group with keys like `toString` and `indexOf`.
-- Improved performance for [has](https://es-toolkit.slash.page/reference/compat/object/has.html) and [get](https://es-toolkit.slash.page/reference/compat/object/get.html).
+### fix
 
-## Version v1.18.0
+- Adding Composed chart to rescaled charts, to fix #1887
 
-Released on September 12th, 2024.
+## 1.8.3 (Oct 17, 2019)
 
-- Added support for [isObject](https://es-toolkit.slash.page/reference/compat/predicate/isObject.html), [findLastIndex](https://es-toolkit.slash.page/reference/compat/array/findLastIndex.html), [parseInt](https://es-toolkit.slash.page/reference/compat/math/parseInt.html), [rearg](https://es-toolkit.slash.page/reference/compat/function/rearg.html), [conforms](https://es-toolkit.slash.page/reference/compat/predicate/conforms.html), [conformsTo](https://es-toolkit.slash.page/reference/compat/predicate/conformsTo.html), [bindKey](https://es-toolkit.slash.page/reference/compat/function/bindKey.html), [some](https://es-toolkit.slash.page/reference/compat/array/some.html), [fromPairs](https://es-toolkit.slash.page/reference/compat/object/fromPairs.html), [isArrayLikeObject](https://es-toolkit.slash.page/reference/compat/predicate/isArrayLikeObject.html), [escapeRegExp](https://es-toolkit.slash.page/reference/string/escapeRegExp.html), [sortBy](https://es-toolkit.slash.page/reference/array/sortBy.html), [isWeakSet](https://es-toolkit.slash.page/reference/predicate/isWeakSet.html), [isWeakMap](https://es-toolkit.slash.page/reference/predicate/isWeakMap.html), [flatMapDeep](https://es-toolkit.slash.page/reference/array/flatMapDeep.html), [escape](https://es-toolkit.slash.page/reference/string/escape.html), [unescape](https://es-toolkit.slash.page/reference/string/unescape.html), [repeat](https://es-toolkit.slash.page/reference/compat/string/repeat.html), [pad](https://es-toolkit.slash.page/reference/compat/string/pad.html), [join](https://es-toolkit.slash.page/reference/compat/array/join.html), and [spread](https://es-toolkit.slash.page/reference/compat/function/spread.html).
-- Improved performance for [deburr](https://es-toolkit.slash.page/reference/string/deburr.html).
+### fix
 
-## Version v1.17.0
+- fix: rollback to componentWillReceiveProps, fix crash in react@15
 
-Released on August 31st, 2024.
+## 1.8.2 (Oct 17, 2019)
 
-### New Features
+### fix
 
-- Added support for new functions: [at](https://es-toolkit.slash.page/reference/array/at.html), [pullAt](https://es-toolkit.slash.page/reference/array/pullAt.html), [deburr](https://es-toolkit.slash.page/reference/string/deburr.html), [lowerFirst](https://es-toolkit.slash.page/reference/string/lowerFirst.html), [upperFirst](https://es-toolkit.slash.page/reference/string/upperFirst.html), and [isRegExp](https://es-toolkit.slash.page/reference/predicate/isRegExp.html).
-- Enhanced [orderBy](https://es-toolkit.slash.page/reference/array/orderBy.html) and [sortBy](https://es-toolkit.slash.page/reference/array/sortBy.html) to support function criteria.
-- [countBy](https://es-toolkit.slash.page/reference/array/countBy.html) now supports numeric and symbol keys.
+- Used UNSAFE_componentWillReceiveProps to replace componentDidUpdate
 
-#### Bug Fixes
+## 1.8.1 (Oct 16, 2019)
 
-- Updated type definitions for [throttle](https://es-toolkit.slash.page/reference/function/throttle.html) and [debounce](https://es-toolkit.slash.page/reference/function/debounce.html).
-- (`es-toolkit/compat`) Fixed [orderBy](https://es-toolkit.slash.page/reference/array/orderBy.html) to correctly handle deep keys even when object shapes differ ([#427](https://github.com/toss/es-toolkit/pull/427)).
+### fix
 
-## Version v1.16.0
+- Fixed Text Component crash
+- Fixed eslint errors in src/
 
-Released on August 15th, 2024.
+### feat
 
-- Added support for [memoize](https://es-toolkit.slash.page/reference/function/memoize.html), [find](https://es-toolkit.slash.page/reference/compat/array/find.html), [findIndex](https://es-toolkit.slash.page/reference/compat/array/findIndex.html), [has](https://es-toolkit.slash.page/reference/compat/object/has.html), [partial](https://es-toolkit.slash.page/reference/function/partial.html), [partialRight](https://es-toolkit.slash.page/reference/function/partialRight.html), [sortBy](https://es-toolkit.slash.page/reference/array/sortBy.html), [isString](https://es-toolkit.slash.page/reference/predicate/isString.html), [rest](https://es-toolkit.slash.page/reference/function/rest.html), [padEnd](https://es-toolkit.slash.page/reference/compat/string/padEnd.html).
+- Add props of <Brush /> to always show text
+- Add onClick event to sankey chart
+- Shape prop can be used without any other prop in reference area
 
-## Version v1.15.1
+## 1.8.0 (Oct 15, 2019)
 
-Released on August 10th, 2024.
+### refactor
 
-- Disabled implicit conversion of values in [orderBy](https://es-toolkit.slash.page/reference/array/orderBy.html) for performance and simplicity.
+- react unsafe methods refactored
 
-## Version v1.15.0
+## 1.7.1 (Aug 13, 2019)
 
-Released on August 10th, 2024.
+### fix
 
-- Added support for [merge](https://es-toolkit.slash.page/reference/object/merge.html), [mergeWith](https://es-toolkit.slash.page/reference/object/mergeWith.html), [toMerged](https://es-toolkit.slash.page/reference/object/toMerged.html), [isSymbol](https://es-toolkit.slash.page/reference/predicate/isSymbol.html), [pascalCase](https://es-toolkit.slash.page/reference/string/pascalCase.html).
-- Added compatibility tests with lodash for [orderBy](https://es-toolkit.slash.page/reference/array/orderBy.html).
+- Fix bar chart tooltip (#1837)
 
-## Version v1.14.0
+## 1.7.0 (Aug 08, 2019)
 
-Released on August 9th, 2024.
+### feat
 
-- (`es-toolkit`) Added support for [mapKeys](https://es-toolkit.slash.page/reference/object/mapKeys.html), [mapValues](https://es-toolkit.slash.page/reference/object/mapValues.html), [cloneDeep](https://es-toolkit.slash.page/reference/object/cloneDeep.html), [before](https://es-toolkit.slash.page/reference/function/before.html), [after](https://es-toolkit.slash.page/reference/function/after.html), [isSubset](https://es-toolkit.slash.page/reference/array/isSubset.html), [ary](https://es-toolkit.slash.page/reference/function/ary.html), [unary](https://es-toolkit.slash.page/reference/function/unary.html), [flattenDeep](https://es-toolkit.slash.page/reference/array/flattenDeep.html), [isEqual](https://es-toolkit.slash.page/reference/predicate/isEqual.html), [isFunction](https://es-toolkit.slash.page/reference/predicate/isFunction.html), [isBoolean](https://es-toolkit.slash.page/reference/predicate/isBoolean.html), [isPrimitive](https://es-toolkit.slash.page/reference/predicate/isPrimitive.html), and [isTypedArray](https://es-toolkit.slash.page/reference/predicate/isTypedArray.html).
-- (`es-toolkit/compat`) Added support for [matches](https://es-toolkit.slash.page/reference/compat/predicate/matches.html), [isMatch](https://es-toolkit.slash.page/reference/compat/predicate/isMatch.html), [isArray](https://es-toolkit.slash.page/reference/compat/predicate/isArray.html), [isArrayLike](https://es-toolkit.slash.page/reference/compat/predicate/isArrayLike.html), [isObjectLike](https://es-toolkit.slash.page/reference/compat/predicate/isObjectLike.html), [isArguments](https://es-toolkit.slash.page/reference/compat/predicate/isArguments.html), [size](https://es-toolkit.slash.page/reference/compat/array/size.html), [bind](https://es-toolkit.slash.page/reference/compat/function/bind.html), [flattenDepth](https://es-toolkit.slash.page/reference/array/flatten.html), and [padStart](https://es-toolkit.slash.page/reference/compat/string/padStart.html).
-- Added compatibility tests with lodash for many functions like [initial](https://es-toolkit.slash.page/reference/array/initial.html), [last](https://es-toolkit.slash.page/reference/array/last.html), [takeRight](https://es-toolkit.slash.page/reference/array/takeRight.html), [without](https://es-toolkit.slash.page/reference/array/without.html), [uniq](https://es-toolkit.slash.page/reference/array/uniq.html), [invert](https://es-toolkit.slash.page/reference/object/invert.html), [isNull](https://es-toolkit.slash.page/reference/predicate/isNull.html), [isUndefined](https://es-toolkit.slash.page/reference/predicate/isUndefined.html), and [isNil](https://es-toolkit.slash.page/reference/predicate/isNil.html).
+- allow events on Text and Label components
+- Enable Tooltip's `translate` style
+- Added position props for ReferenceLine to allow to control offset of it
 
-## Version v1.13.1
+### fix
 
-Released on July 20th, 2024.
+- handle `dataKey` as function, get correct data array for tooltip
+- fix style of legend in case of area and radar use fill for fallback color
 
-- Use the compatibility layer `es-toolkit/compat` in legacy CDN builds.
+## 1.6.2 (May 22, 2019)
 
-## Version v1.13.0
+### feat
 
-Released on July 20th, 2024.
+- Add cornerIsExternal prop to center rounded corner at radial bar edge
+- Add new component `Customized` to render customized content which can user internal state and props
+- Add props `tooltipType="none"` to hide tooltip data for Area, Bar, Line, Scatter, Funnel, Pie, Radar, RadialBar
 
-`es-toolkit` can now be used in various CDNs, like [unpkg](https://unpkg.com) and [jsdelivr](https://www.jsdelivr.com). See more in our [usage docs](https://es-toolkit.slash.page/usage.html)
+### fix
 
-### Features
+- fix the order of tooltip items when not specify itemSorter
+- Fix typo in example of RadialBarChart
 
-- Added support for [flattenObject](https://es-toolkit.slash.page/reference/object/flattenObject.html), [isPlainObject](https://es-toolkit.slash.page/reference/predicate/isPlainObject.html), [isLength](https://es-toolkit.slash.page/reference/predicate/isLength.html). ([3e60443](https://github.com/toss/es-toolkit/commit/3e60443a408d3296e4a18a1601a16f5953d414f9), [3764993](https://github.com/toss/es-toolkit/commit/376499351f347c269400ee0eeb5145ad041c7c06), [#245](https://github.com/toss/es-toolkit/pull/245))
-- Added support for [concat](https://es-toolkit.slash.page/reference/compat/array/concat.html) in our compatibility layer `es-toolkit/compat`. ([e09517f](https://github.com/toss/es-toolkit/commit/e09517f05c180b43e0f2b0b0fa44167f9c4832f3))
+## 1.6.1 (May 20, 2019)
 
-### Lodash Compatibility
+### fix
 
-- Ensured compatibility with [difference](https://es-toolkit.slash.page/reference/array/difference.html) and [take](https://es-toolkit.slash.page/reference/compat/array/take.html)
+- fix "Maximum call stack size exceeded" error when use label={<Label />}
+- fix bug of "Cannot read property reduce of undefined in Text.js"
+- fix `getDomainOfDataByKey` when all the values are null or undefined
 
-## Version v1.12.0
+## 1.6.0(May 14, 2019)
 
-Released on July 19th, 2024.
+### fix
 
-- Fixed a bug where `es-toolkit/compat` was not available in modern Node.js environments.
-- Added support for [max](https://es-toolkit.slash.page/reference/compat/math/max.html) and [min](https://es-toolkit.slash.page/reference/compat/math/min.html) in our compatibility layer `es-toolkit/compat`. ([e1e6e38](https://github.com/toss/es-toolkit/commit/e1e6e38206750fb90f5b99cace9196635288e21c))
+- Use y-axis ticks to determine y-axis category
+- fix bug in ThreeMap inside ResponsiveContainer, fix #1692
+- Avoid same keys on label and line, fixes #1302
+- use _.max to replace Math.max.apply, use _.min to replace Math.min.apply
 
-## Version v1.11.0
+### feat
 
-Released on July 18th, 2024.
+- Adds forceCornerRadius prop to RadialBar
+- calculate width with aspect and height when width is falsey
 
-### Introducing `es-toolkit/compat`
+## 1.5.0(Feb 15, 2019)
 
-We're introducing `es-toolkit/compat`, a new module designed as a drop-in replacement for lodash. It replicates lodash's API, making it easier to switch between the two libraries.
+### fix
 
-`es-toolkit/compat` is undergoing rigorous testing using real `lodash` test cases. Initial benchmarks suggest it's typically 5% slower and increases bundle size by 10% compared to the original `es-toolkit`.
+- fix the bug of ReferenceLine when calculate coordinates, fix #1643
+- fix bug of Scatter in ComposedChart
 
-This module is intended to facilitate a smooth transition and should be replaced with the original `es-toolkit` for optimal performance once migration is complete.
+### feat
 
-For more information, see our [compatibility documentation](https://es-toolkit.slash.page/compatibility.html).
+- allow aria-\* attributes and "role", "focusable", "tabIndex" of charts, fix #1226, fix #1584
+- add new props "paylodUniqBy" to Tooltip and Legend
 
-### Features
+## 1.4.4(Feb 15, 2019)
 
-- Added support for [get](https://es-toolkit.slash.page/reference/compat/object/get.html) and [set](https://es-toolkit.slash.page/reference/compat/object/set.html) in our compatibility layer `es-toolkit/compat`. (https://github.com/toss/es-toolkit/pull/232, https://github.com/toss/es-toolkit/pull/223)
-- Added support for [zipObjectDeep](https://es-toolkit.slash.page/reference/compat/array/zipObjectDeep.html) in our compatibility layer `es-toolkit/compat`. (https://github.com/toss/es-toolkit/pull/150)
-- Added support for [flatMap](https://es-toolkit.slash.page/reference/compat/array/flatMap.html). (https://github.com/toss/es-toolkit/pull/209)
-- Added support for [startCase](https://es-toolkit.slash.page/reference/string/startCase.html), [startsWith](https://es-toolkit.slash.page/reference/string/startsWith.html), and [endsWith](https://es-toolkit.slash.page/reference/string/endsWith.html). (https://github.com/toss/es-toolkit/pull/224).
-- Added support for [withTimeout](https://es-toolkit.slash.page/reference/promise/withTimeout.html). (https://github.com/toss/es-toolkit/pull/210)
+### fix
 
-### Bug fixes
+- fix the bug of automatically calculate the y-coordinate of yAxis tick when tick has unit, fix #1623
+- render clipPath in <defs />, fix bug in generateCategoricalChart, fix #1592
+- remove React.Fragment in DefaultTooltipContent, fix #1645
 
-- Fixed `drop` and `dropRight` incorrectly accepting negative integers. (https://github.com/toss/es-toolkit/pull/218)
-- Fixed `invert` not to invert inherited properties. (https://github.com/toss/es-toolkit/pull/221)
+## 1.4.3(Feb 12, 2019)
 
-### Performance Improvements
+### fix
 
-- Improved performance for `dropRightWhile`. (https://github.com/toss/es-toolkit/pull/220)
+- fix bug of <Rectangle /> when width < 0 && `radius` is not null, fix #1596
+- fix paddingAngle of Pie when render only <Pie /> not <PieChart />
+- fix onMouseEnter and Tooltip for Pie on FireFox
 
-## Version v1.10.1
+### feat
 
-Released on July 15th, 2024.
+- Make the timeOut timer for the brush configurable through props
+- Allow to format name in Tooltips
 
-- Fixed [camelCase](https://es-toolkit.slash.page/reference/string/camelCase.html) using `capitalize` from incorrect import. ([8dda135](https://github.com/toss/es-toolkit/commit/8dda135fa339ae4953908a74b2e6eeca9f163a20))
+### dep
 
-## Version v1.10.0
+- Update lodash version to 4.17.5 and install webpack-dev-server@3.1.14 dev dependency
+- Updated package.json to mark effectful modules
+- chore: update version of sinon, from 4.x to 7.x
 
-Released on July 14th, 2024.
+## 1.4.2(Dec 21, 2018)
 
-### Features
+### refactor
 
-- Add support for [capitalize](https://es-toolkit.slash.page/reference/string/capitalize.html), [snakeCase](https://es-toolkit.slash.page/reference/string/snakeCase.html), [kebabCase](https://es-toolkit.slash.page/reference/string/kebabCase.html), [camelCase](https://es-toolkit.slash.page/reference/string/camelCase.html) and [lowerCase](https://es-toolkit.slash.page/reference/string/lowerCase.html). (https://github.com/toss/es-toolkit/pull/152, https://github.com/toss/es-toolkit/pull/161, https://github.com/toss/es-toolkit/pull/162, https://github.com/toss/es-toolkit/pull/166, [21d6530](https://github.com/toss/es-toolkit/commit/21d6530e16471d596410d57d59fd3ced8fc5569f)).
-- Add support for [negate](https://es-toolkit.slash.page/reference/function/negate.html). (https://github.com/toss/es-toolkit/pull/177)
-- Add support for [isEqual](https://es-toolkit.slash.page/reference/predicate/isEqual.html). (https://github.com/toss/es-toolkit/pull/174)
-- Add support for [clone](https://es-toolkit.slash.page/reference/object/clone.html). (https://github.com/toss/es-toolkit/pull/155)
-- Add support for [toFilled](https://es-toolkit.slash.page/reference/array/toFilled.html). (https://github.com/toss/es-toolkit/pull/154)
-- Add support for [initial](https://es-toolkit.slash.page/reference/array/initial.html) and [last](https://es-toolkit.slash.page/reference/array/last.html). (https://github.com/toss/es-toolkit/pull/188, https://github.com/toss/es-toolkit/pull/149)
-- Add support for [flattenDeep](https://es-toolkit.slash.page/reference/array/flattenDeep.html). (https://github.com/toss/es-toolkit/pull/160)
+- Refactor transition of <Area />, <Line />, <Radar />, make transition more smoothly when the length of dataset changes
 
-### Performance Improvements
+### fix
 
-- Optimize the performance of [isNil](https://es-toolkit.slash.page/reference/predicate/isNil.html) by simplifying its check. ([489ac76](https://github.com/toss/es-toolkit/commit/489ac76fc62f97cbfa3ca9eec2e0a4c03c4f5b1c))
-- Optimize the performance of [sum](https://es-toolkit.slash.page/reference/array/sum.html). (https://github.com/toss/es-toolkit/pull/155)
+- replace lodash isFinite with Number.isFinite, meanwhile add polyfill core-js's Number polyfill in order to use Number.usFinite directly
+- updated area chart to cut off dots on left most axis
 
-## Version v1.9.0
+## 1.4.1(Nov 16, 2018)
 
-Released on July 10th, 2024.
+### fix
 
-- Add support for [head](https://es-toolkit.slash.page/reference/array/head.html) and [tail](https://es-toolkit.slash.page/reference/array/tail.html). (https://github.com/toss/es-toolkit/pull/131, https://github.com/toss/es-toolkit/pull/143).
-- Add support for [unzip](https://es-toolkit.slash.page/reference/array/unzip.html). (https://github.com/toss/es-toolkit/pull/130)
-- Add support for [flatten](https://es-toolkit.slash.page/reference/array/flatten.html), which is six times faster than `Array#flat`. (https://github.com/toss/es-toolkit/pull/147)
+- Fix height of TreeMap
 
-## Version v1.8.0
+## 1.4.0(Nov 15, 2018)
 
-Released on July 5th, 2024.
+### feat
 
-- Add support for [orderBy](https://es-toolkit.slash.page/reference/array/orderBy.html). (https://github.com/toss/es-toolkit/pull/123)
-- Add support for [invert](https://es-toolkit.slash.page/reference/array/invert.html). (https://github.com/toss/es-toolkit/pull/125)
-- Add support for [inRange](https://es-toolkit.slash.page/reference/array/inRange.html). (https://github.com/toss/es-toolkit/pull/124)
+- Add FunnelChart and Trapezoid
+- Add nested Treemap
 
-## Version v1.7.1
+## 1.3.6(Nov 07, 2018)
 
-Released on July 3rd, 2024.
+### fix
 
-- Add support for [unzipWith](https://es-toolkit.slash.page/reference/array/unzipWith.html). (https://github.com/toss/es-toolkit/pull/113)
-- Add support for [forEachRight](https://es-toolkit.slash.page/reference/array/forEachRight.html). (https://github.com/toss/es-toolkit/pull/119)
-- Add support for [countBy](https://es-toolkit.slash.page/reference/array/countBy.html). (https://github.com/toss/es-toolkit/pull/117)
-- Add support for [without](https://es-toolkit.slash.page/reference/array/without.html). (https://github.com/toss/es-toolkit/pull/115)
-- Add support for [fill](https://es-toolkit.slash.page/reference/array/fill.html). (https://github.com/toss/es-toolkit/pull/109)
-- Add support for [sampleSize](https://es-toolkit.slash.page/reference/array/sampleSize.html). (https://github.com/toss/es-toolkit/pull/101)
-- Add support for [meanBy](https://es-toolkit.slash.page/reference/math/meanBy.html). (https://github.com/toss/es-toolkit/pull/104)
-- Accept number and symbol keys in [keyBy](https://es-toolkit.slash.page/reference/array/keyBy.html) and [groupBy](https://es-toolkit.slash.page/reference/array/groupBy.html) (https://github.com/toss/es-toolkit/pull/98, https://github.com/toss/es-toolkit/pull/99)
+- Fix bug preventing use of functions or custom components for the Bar background prop
+- Fix incorrect sort logic in stripe rendering
 
-## Version v1.6.1
+### feat
 
-Released on June 30th, 2024.
+- Added animateNewValues property to Line
 
-- Publish package on [JSR](https://jsr.io/@es-toolkit/es-toolkit).
+## 1.3.5(Oct 25, 2018)
 
-## Version v1.6.0
+### fix
 
-Released on June 30th, 2024.
+- use lodash \_.values instead of Object.values
+- perfer YAxis which has finite domain and nice ticks when a chart has many YAxes
+- fix <Area /> for expected length height attribute
 
-### Features
+### chore
 
-- Add support for [keyBy](https://es-toolkit.slash.page/reference/array/keyBy.html). (https://github.com/toss/es-toolkit/pull/93).
-- Add support for [zipObject](https://es-toolkit.slash.page/reference/array/zipObject.html). (https://github.com/toss/es-toolkit/pull/92).
-- Add support for [compact](https://es-toolkit.slash.page/reference/array/compact.html). ([60ae59b](https://github.com/toss/es-toolkit/commit/60ae59bcfee69992e5447322e1da9cb7631c5745))
-- Add support for [mean](https://es-toolkit.slash.page/reference/math/mean.html). ([715bc60](https://github.com/toss/es-toolkit/commit/715bc60b26bb24ad490b8befe16204050699f0c0))
+- add babel-plugin-lodash in babelrc
+- update webpack.config.js to remove sourceMap in umd/Recharts.min.js
 
-## Version v1.5.0
+## 1.3.4(Oct 13, 2018)
 
-Released on June 28th, 2024.
+### fix
 
-### Features
+- Fix domain calculation with 0 values (#1519)
 
-- Add support for [range](https://es-toolkit.slash.page/reference/math/range.html). (https://github.com/toss/es-toolkit/pull/77, [2db11d8](https://github.com/toss/es-toolkit/commit/2db11d8882f6d7b0b53271c76f4c5007b6a9181e)).
-- Add support for [minBy](https://es-toolkit.slash.page/reference/math/minBy.html) (https://github.com/toss/es-toolkit/pull/71).
-- Add support for [maxBy](https://es-toolkit.slash.page/reference/math/maxBy.html) (https://github.com/toss/es-toolkit/pull/64).
+## 1.3.3(Oct 10, 2018)
 
-### Bug fixes
+### feat
 
-- Enforce stricter argument types in `pickBy` and `omitBy`. (https://github.com/toss/es-toolkit/pull/60)
-- Fix a bug in `difference` where one array parameter was not readonly. (https://github.com/toss/es-toolkit/pull/83)
-- Fix a bug in `round` where it incorrectly accepts floating-point numbers as `precision`. (https://github.com/toss/es-toolkit/pull/79)
+- find yAxisWithNiceTicks and choose it over getAnyElementOfObject
 
-## Version v1.4.0
+### fix
 
-Released on June 15th, 2024.
+- update recharts-scale to 0.4.2 to fix bug of DecimalError when data is Inifinity, fix #1493
 
-### Features
+## 1.3.2(Oct 07, 2018)
 
-- Add support for [random](https://es-toolkit.slash.page/reference/math/random.html). (https://github.com/toss/es-toolkit/pull/53)
-- Add support for [randomInt](https://es-toolkit.slash.page/reference/math/randomInt.html). ([99a34e4](https://github.com/toss/es-toolkit/commit/99a34e4e9944c1b843e9d97dff0b5ff4e5eec260))
-- Add support for using AbortSignals to cancel the `Promise` returned by `delay`. (https://github.com/toss/es-toolkit/pull/52)
+### fix
 
-### Performance Optimizations
+- Fix axis type error
+- Fix add sideEffects flag to enable tree-shaing
 
-- Optimized `uniqBy`. ([60e7974](https://github.com/toss/es-toolkit/commit/60e79741271e645bfa551f708466e43b136f69b1))
+## 1.3.1(Sep 29, 2018)
 
-## Version v1.3.1
+### fix
 
-Released on June 15th, 2024.
+- Fix the react-resize-detector don't match react 15
 
-- Fixed a bug in `dropWhile` where it incorrectly returned the entire array when no elements matched the predicate. (https://github.com/toss/es-toolkit/pull/49)
+## 1.3.0(Sep 28, 2018)
 
-## Version v1.3.0
+### feat
 
-Released on June 14th, 2024.
+- upgrade recharts-scale to 0.4.0, to fix the calculation of big float
 
-### Features
+## 1.2.0(Sep 7, 2018)
 
-- Add support for using AbortSignals to cancel `debounce`d functions. (https://github.com/toss/es-toolkit/pull/45)
+### feat
 
-### Performance Optimizations
+- Add blendStroke prop to Pie component
+- Adding contentStyle prop to Tooltip for styling DefaultTooltipContent
 
-- Optimize the time complexity of `intersection`. (https://github.com/toss/es-toolkit/pull/47)
+### fix
 
-## Version v1.2.2
+- Fixed typo of playload -> payload in Radar chart
+- Fix PieChart animation event handlers not firing
+- Fix alwaysShow warn() condition in ReferenceLine
+- Fix Tooltip disappears when using setState()
 
-Released on June 13th, 2024.
+## 1.1.0(Jul 19, 2018)
 
-- Add support for `readonly` arrays in array utilities. (https://github.com/toss/es-toolkit/pull/32, [e595e5e](https://github.com/toss/es-toolkit/commit/e595e5e017e1f2cb138b1ad3d708635efc5e289e))
-- Optimize the time complexity of `uniq`. (https://github.com/toss/es-toolkit/pull/40)
-- Optimize the time complexity of `intersectionBy`. (https://github.com/toss/es-toolkit/pull/44)
+### feat
 
-## Version v1.2.1
+- Allow reference areas which extend past the canvas bounds
+- Allow to add more classes in tooltips
+- Reference line segment by specifying a pair of
+  endpoints
 
-Released on June 13th, 2024.
+## 1.0.1(Jul 05, 2018)
 
-- Ensure that the `omit` and `pick` functions only accept plain JavaScript objects as arguments. (https://github.com/toss/es-toolkit/pull/35)
+### fix
 
-## Version v1.2.0
+- only use babel-es in es6/, fix #1372
 
-Released on June 8th, 2024.
+## 1.0.0(Jul 05, 2018)
 
-### Features
+### fix
 
-- Added the `noop` function. (https://github.com/toss/es-toolkit/commit/678028dd3d60509b99dfec47aed7f1088140d19d)
+- #1195 Replace axis scale value `utcTime` with `utc`
+- remove wrapperStyle on DefaultTooltipContent
+- Clip dots of <Line />
+- Move style spread to after default styles to allow overriding
+- Fixing range area chart bottom bound. Base line needed to be filterted for connecting
+  null
+- Fix tooltips that disappear while mouse still over a scatter point
 
-### Performance Improvements
+### refactor
 
-- Optimized the `difference` and `differenceBy` functions for better performance with large arrays. (https://github.com/toss/es-toolkit/pull/27, https://github.com/toss/es-toolkit/pull/28)
+- use lodash-es for es6 build
+- Factor out some scale- and rect-related functions
 
-### Bug fixes
+### feat
 
-- Fixed `shuffle` to ensure it does not modify the original array. (https://github.com/toss/es-toolkit/pull/29)
+- Add touchStart & touchEnd event handling
+- Add explicit prop `defaultShowTooltip` to activate tooltip
+- Position the 'top' label outside the element for negative heights
 
-## Version v1.1.0
+## 1.0.0-beta.10(Jan 31, 2018)
 
-Released on June 5th, 2024.
+### fix
 
-- Support passing arguments to throttled and debounced functions. (https://github.com/toss/es-toolkit/pull/26)
+- fix Scatter Chart:lineType 'fitting' does not work
+- Update to allow CSP compliance on setting styles
+- Remove react-transition-group from peerDependencies
 
-## Version v1.0.4
+### refactor
 
-Released on June 4th, 2024.
+- Replace flatmap of reduce to \_.flatmap in getDomainOfDataByKey
 
-- Provide correct type declarations for ECMAScript Modules. (https://github.com/toss/es-toolkit/pull/21)
+### feat
 
-## Version v1.0.3
+- Add the gap of props for brush
 
-Released on June 3rd, 2024.
+## 1.0.0-beta.9(Jan 09, 2018)
 
-- Provide correct types for `"module": "Node"`, ` "Node10"`, and `"Node16"`. (https://github.com/toss/es-toolkit/pull/16)
+### fix
 
-## Version v1.0.2
+- Fix `verticalFill` and `horizontalFill` in `<CartesianGrid />` when points are unordered
 
-Initial release. Released on May 31th, 2024.
+## 1.0.0-beta.8(Jan 09, 2018)
+
+### feat
+
+- Add props `useTranslate3d` to control whether use translate3d or translate in <Tooltip />
+- Add props `verticalFill` and `horizontalFill` in `<CartesianGrid />` to show grid background
+- Add `visibleTicksCount` in props of customized tick of `<CartesianAxis />`
+
+### fix
+
+- Replace lodash \_.get with simple Array.prototype.find
+- Prevent texts from being selected when dragging the brush
+- Add try...catch... when getTotalLength is called by a svg path to fix IE bug
+
+## 1.0.0-beta.7(Dec 21, 2017)
+
+### feat
+
+- Add props `allowDuplicatedCategory` to XAxis, YAxis, PolarAngleAxis, PolarRadiusAxis, to remove duplicated category when type="category"
+- Add props id in `<Area />`, `<Bar />`, `<Line />`, `<Scatter />`, `<Label />`, `<LabelList />` for SSR
+- Support specify domain of category type axis when allowDuplicatedCategory is false, add cooresponding "xAis", "yAxis", "zAxis" to the props or customized shape of Scatter
+
+### fix
+
+- Fx sanketartAngle and endAngle of RadarChart diagram not re-rendering when updating data prop
+- Fix animation of AreaChart when baseLine is NaN / undefined
+- Fix default startAngle and endAngle of RadarChart
+- Use cloneElement to create Legend
+
+## 1.0.0-beta.6(Dec 02, 2017)
+
+### feat
+
+- Add props `background` to support background rectange in `<Bar />`
+- add props `tickMargin` which set the space between text and tick line
+
+### fix
+
+- update PRESENTATION_ATTRIBUTES to allow set the radius of each `<Rectangle />` of BarChart
+- render Legend when all values of Pie is 0
+- fix animation of intial `<Bar />`
+
+## 1.0.0-beta.5(Nov 24, 2017)
+
+### fix
+
+- fix `isChildrenEqual` when chart has a single child in an array
+- support LabelList in ScatterChart
+
+## 1.0.0-beta.4(Nov 24, 2017)
+
+### fix
+
+- fix Label when content is a function and return simple string
+- add name to propTypes of Scatter
+- fix \*\* error of lib/
+
+## 1.0.0-beta.3(Nov 23, 2017)
+
+### feat
+
+- Add datakey to proops of customized dot
+
+### fix
+
+- Removed the use of `Children.only` from the isSingleChildEqual call. Appears to resolve the issue logged at https://github.com/recharts/recharts/issues/935
+- Fix Line Animation with given Magic Number
+- Don't break text contents on non-breaking spaces
+- Support for "strokeDasharray" in <Legend/>
+- Fix Bar Animation with the given Magic Number
+- Fix position of `<Label />`
+- Fix exception of AreaChart when all the values are null
+- Fix the orders of polar angle ticks in RadarChart
+- Replace \*\* width Math.pow
+
+## 1.0.0-beta.2(Nov 17, 2017)
+
+### fix
+
+- fix attributes order of `<Label />`
+- fix the domain of Axis when specify `ticks`
+
+### feat
+
+- allow set x, y, width, height, horizontalPoints, verticalPoints of CartesianGrid
+- add props to the parameters of callbacks
+
+### refactor
+
+- add id prop to Pie Component
+- Update Bar and Line to allow them to recognise multiple ErrorBars
+
+## 1.0.0-beta.1(Nov 06, 2017)
+
+### feat
+
+- Add index to line props in Pie
+- Update ReferenceDot.js
+
+### chore
+
+- update react-resize-detector, react-smooth to support react16
+
+## 1.0.0-beta.0(Oct 24, 2017)
+
+### feat
+
+- Allow ReferenceArea to cover available space
+- Support React 16
+
+### fix
+
+- Fix bug of animation when toggle the value of `isAnimationActive`
+
+## 1.0.0-alpha.6(Oct 10, 2017)
+
+### feat
+
+- Add props `reverseStackOrder` to reverse the order of stacked items
+- Allow an arbirary domain for cartesian X and Y axes
+- Added className prop for Label
+
+### fix
+
+- Fix confused parameter `startX` in `<Brush />`
+- Fix ScatterChart when the type of XAxis is "category"
+
+### docs
+
+- Fix typo initilaState -> initialState
+
+## 1.0.0-alpha.5(Sep 16, 2017)
+
+### fix
+
+- Don't check for animation when it is disabled
+- fix bug of paddingAngle when isAnimationActive is true
+
+### feat
+
+- add props filterNull to `Tooltip`, null values will not be filtered when filterNull = false
+
+### refactor
+
+- Allowing length in different unit in ResponsiveContainer
+  By allowing type: String on 'minHeight', 'minWidth', 'maxHeight' property, developers can use length in different units like em, pt etc.
+- Render curve with fill first in Area
+
+### dep
+
+- remove react-transition-group in peer dependencies
+- Updates resize-detector to 0.6, close #705, fix the problem with strange scrollbars appearing over the charts
+
+## 1.0.0-alpha.4(Aug 21, 2017)
+
+### fix
+
+- Fix error 'Cannot read property 'map' of undefined' in Pie
+- Fix bug of parsing the width of Brush
+- Don't render any path when width === 0 || height === 0 in Rectangle
+
+### refactor
+
+- Avoid calculating ticks if tick is set to false
+- Update the order of parsing data in mixed components
+
+### feat
+
+- Render unit when the props unit of XAxis, YAxis is specified
+- Add default nameKey to "name" property in Pie
+- Add props className and id to ResponsiveContainer
+
+### dep
+
+- Update recharts-scale to fix bug of ticks
+
+## 1.0.0-alpha.3(Aug 12, 2017)
+
+### fix
+
+- fix bug of isChildrenEqual
+- fix "hide" props of YAxis
+
+## 1.0.0-alpha.2(Jul 10, 2017)
+
+### feat
+
+- Add props className to ReferenceLine, ReferenceDot, ReferenceArea
+- Specify the contents of LabelList by `dataKey`
+
+### fix
+
+- Fix faulty logic check in inRange function
+- onTouchMove event call method that handle tooltip and active dot draw
+- Show tooltip on drag movement on touch devices
+- Fix viewBox of Label when render implicit label
+- Fix label of Pie
+- Fix events of Pie and PieChart
+- Fix bug of interplateNumber
+- Fix the bug of parsing "dataMin - 0.05" like domain
+
+## 1.0.0-alpha.1(Jun 11, 2017)
+
+### fix
+
+- update the propType of the props data or Bar
+- fix the type of Curve
+- fix connectNulls of `Line`
+- update version of recharts-scale to fix #713
+- fix valueKey of Pie temporarily and add logs when use deprecated "valueKey"
+- bind events to Radar
+- fix animation of active-dot
+
+## 1.0.0-alpha.0(May 24, 2017)
+
+### refactor
+
+- refactor PolarCharts
+- refactor Animation
+- refactor Label and LabelLis
+
+### fix
+
+- fix scale of ErrorBar
+
+## 0.22.4 (Apr 26, 2017)
+
+### fix
+
+- fix dot customized className
+
+### dep
+
+- update react-smooth, and react-transition-group
+
+## 0.22.3 (Apr 19, 2017)
+
+### refactor
+
+- add mathSign in DataUtils to replace Math.sign
+
+## 0.22.2 (Apr 18, 2017)
+
+### fix
+
+- fix spelling error of fillOpacity
+- fix bug of axis when has duplicated ticks
+
+## 0.22.1 (Apr 13, 2017)
+
+### feat
+
+- Add legendType: ‘none’ to not render coresponding legend item
+- use prop-types instead of React.PropTypes
+
+### fix
+
+- Fix re-rendering element bug when adding new elements
+- Fix circular dependence of Brush.js and LineChart.js
+
+## 0.22.0 (Apr 05, 2017)
+
+### feat
+
+- Add event handlers to component Dot
+- Support embedded chart as a panoram in Brush
+- Add props reversed to `XAxis` and `YAxis` to reverse the range of axis
+
+### fix
+
+- Fix error or time scale
+
+## 0.21.2 (Mar 01, 2017)
+
+### fix
+
+- fix ticks for specified domain
+
+## 0.21.1 (Feb 28, 2017)
+
+### fix
+
+- Update recharts-scale to fix bug of ticks
+
+## 0.21.0 (Feb 28, 2017)
+
+### feat
+
+- Support band area and band bar
+- support customized horizontal line and vertical line in CartesianGrid
+- support customized events in ReferenceArea, ReferenceLine
+- add formatter in `Legend`
+
+### fix
+
+- Fix empty tick when category axis has nil values
+- fix the propTypes of fontSize
+- support props dx and dy in Text
+- fix bug of stacked bar when spcify domain of axis
+- fix the barSize of bars in `<Bar />` when too many bars
+
+## 0.20.8 (Feb 15, 2017)
+
+### fix
+
+- Fix bug when onBBoxUpdate of Legend is null
+
+## 0.20.7 (Feb 15, 2017)
+
+### fix
+
+- Fix stack chart when only have one stacked element
+- Fix the offset when the boundary box update
+- Fix position of XAxis in ScatterChart when the orientation is right
+- Use DataUtils.uniqueId to replace lodash.uniqueId
+
+### feat
+
+- Add props `mirror` in XAxis and YAxis, support mirror ticks
+- Add props iconType to the props of Legend which can specify the icon type of legend
+
+## 0.20.6 (Feb 08, 2017)
+
+### fix
+
+- Fix `dataStartIndex` and `dataEndIndex` of synchronized chart
+- Use lodash.uniqueId to produce the id of Pie
+
+## 0.20.5 (Jan 17, 2017)
+
+### fix
+
+- fix "Maximum call stack size exceeded error" caused by Tooltip update
+
+## 0.20.4 (Jan 17, 2017)
+
+### fix
+
+- Animate of Tooltip may crash browser sometimes, use style transition to do the animation of tooltip
+
+## 0.20.3 (Jan 17, 2017)
+
+### fix
+
+- Fix Tooltip in ScatterChart
+- Fix radius of Rectangle when height < 0
+
+### feat
+
+- Add clip path in Area, Bar and Scatter
+- Add onMouseDown and onMouseUp hooks in generateCategoricalChart
+
+### chore
+
+- Disable babel transform es2015 modules to commonjs for es6 build
+- Use cross-env to support windows builds, likewise downgrade linebreak-style to warning
+- Update release.sh
+
+## 0.20.2 (Jan 05, 2017)
+
+### fix
+
+- remove opacity in ErrorBar
+- fix `Tooltip` when `coordinate` is null
+
+### feat
+
+- add props `basevalue` in `AreaChart`
+- add clipPath when xAxis or yAxis of `Line` allow data overflow
+- allow dataKey to be a map function
+- support Tooltip in Sankey and Tooltip
+- Allow Brush to set default startIndex and endIndex
+
+## 0.20.1 (Dec 27, 2016)
+
+### fix
+
+- Fix bug of `isChildrenEqual` when component has child `null`
+- Adjust `barGap` when `bandSize` is too small to display bars
+
+### feat
+
+- Add props `payload` and `value`, update props `index` in `activeDot` of `Line`, `Area`
+
+### refactor
+
+- Move polyfill of `Math.sign` to polyfill.js
+
+## 0.20.0 (Dec 26, 2016)
+
+### feat
+
+- Support `ErrorBar` in `Line`, `Area`, `Bar`, `Scatter`
+- Support touch event in `LineChart`, `AreaChart`, `BarChart`
+- Add props `throttleDelay` in `LineChart`, `AreaChart`, `BarChart` for performance
+- Support cornerRadius in Sector, RadialBar and Pie
+- Support events in CartesianAxis, PolarAngleAxis, PolarRadiusAxis
+- Support touch events in Brush
+
+### refactor
+
+- Use `getStringSize` to calculate the width of `Text`
+- Refactor children comparsion in `generateCategoricalChart`, and add updateId to force Brush update when children update
+- Refactor `getMouseInfo` to remove some duplicated codes in `generateCategoricalChart`
+- Refactor Tooltip and Legend, remove react-dom-server
+
+### fix
+
+- Fix the `chartId` in `handleReceiveSyncEvent` of `generateCategoricalChart`
+
+## 0.19.1(Dec 15, 2016)
+
+### fix
+
+- Adding missing event propTypes
+- support x, y of `Text` are number or text
+- fix proptypes of Scatter to allow that the props `data` can be a array of array
+- fix server side render check `isSsr`
+- remove duplicated "square" in legendType
+- fix `getStringSize` when server side rendering check fails
+- fix animation error when update Line which has props stroke-dasharray
+- fix bug of BarChart when add stackId in only one Bar and update test cases
+
+## 0.19.0 (Nov 23, 2016)
+
+### refactor
+
+- remove unneed `Animate` in `Bar` and `Rectangle`
+- refactor interval of `CartesianAxis`, support "preserveStart", "preserveEnd", "preserveStartEnd"
+- add payload in the `Tooltip` and `Scatter` of `ScatterChart`, and unify the payload of Components
+
+### feat
+
+- `RadialBar` support events triggered on the entire bar
+- support customized lable in `RadialBar`
+- support `maxHeight` in `ResponsiveContianer`
+
+### fix
+
+- fix multiple y-axes breaks chart when plotting only single datum
+- Relax propTypes.ticks in CartesianAxis
+
+## 0.18.0 (Nov 15, 2016)
+
+### feat
+
+- support customized scale function of categorical charts
+- support customized events in Legend
+
+### refactor
+
+- refactor ResponsiveContainer with ReactResizeDetector
+- change the default value of isAnimationActive
+- remove some unneed default attributes of Components
+
+### fix
+
+- fix wrong written default props
+- fix twice triggered event in Bar
+- fix treemap stroke pollution cause by defaultProps
+
+## 0.17.0 | 0.17.1 (Nov 08, 2016)
+
+### fix
+
+- fix strokeDasharray of Line
+- add payload in Legend payload item
+- fix position of vertical Legend
+- Recalculate points after width or height change
+
+### refactor
+
+- refactor ticks filter algorithm of CartesianAxis
+- change order of stacked BarChart and AreaChart
+- refactor event handlers of PieChart, RadarChart, Brush, RadialBarChart
+- support onMouseEnter, onMouseLeave, onMouseMove, onClick in categorical chart
+
+## 0.16.2 (Nov 04, 2016)
+
+### fix
+
+- fix dash line animation
+- fix the bug when the children of categorical chart change
+
+### feat
+
+- support shape in ReferenceLine
+
+### refactor
+
+- render Bar, Area, Line according to the order of Bar, Area, Line in ComposedChart
+
+## 0.16.1 (Nov 03, 2016)
+
+### fix
+
+- refactor to treat NaN like undefined or null, fix #303
+- fix tranform origin of Bar, fix #292
+
+### feat
+
+- support customized position of Tooltip, fix #31
+
+### docs
+
+- fix LodashModuleReplacementPlugin
+
+## 0.16.0 (Nov 03, 2016)
+
+### refactor
+
+- Major Performance Change - Re-Use Expensive To Generate Data
+
+### feat
+
+- support both x-axis and y-axis are numerical axis, fix #183
+- add animation events in `Line`, `Area`, `Bar`
+
+### fix
+
+- fix angle of PolorRadiusAxis
+
+## 0.15.3 (Oct 28, 2016)
+
+### feat
+
+- Add angle property to PRESENTATION_ATTRIBUTES (#307)
+
+### Dev
+
+- chore: update istanbul plugin and add yarn.lock
+
+## 0.15.2 (Oct 13, 2016)
+
+### Fix
+
+- support empty margin in generateCategoricalChart
+- fix the label of RadialBarChart
+- fix the bug of `<Text>{0}</Text>`
+- fix the bug of ScatterChart when margin lose some attributes
+
+### Feat
+
+- support maxBarSize in BarChart and Bar
+- support fill in CartesianGrid
+
+### Refactor
+
+- simplify the calculation of width and height when specified aspect
+
+## 0.15.1 (Sep 26, 2016)
+
+### fix
+
+- Fix label/tick vertical alignment of Text
+
+## 0.15.0 (Sep 23, 2016)
+
+### feat
+
+- New Component `Text`
+
+### refactor
+
+- Fix possible memory leak warning of events
+
+### fix
+
+- minPointSize working when value is 0
+- Restored support for discrete values in Line and Area charts
+- Allowed for strings to be used as axis id in the ScatterChart
+
+## 0.14.2 (Sep 19, 2016)
+
+### Fix
+
+- Stop caching span in memory of getStringSize
+- Fix the bug of LineChart and ScaterChart when some data is null or undefined
+
+### feat
+
+- ScatterChart support for attributes using data and Cell
+
+## 0.14.1 (Sep 12, 2016)
+
+- Fix webpack.config.js
+
+## 0.14.0 (Sep 12, 2016)
+
+### Feat
+
+- allow label function to return a string
+- Pass entry to formatter function
+- Support labels in ScatterChart axis
+- Add dataKey in the payload of Legend
+- support allowDataOverflow in XAxis, YAxis, PolarRadiusAxis
+
+### Refactor
+
+- Refactor the received props of Surface
+
+### Fix
+
+- Fixed up handling of nulls for domain creation
+- Stopped domain calculation reverting to 0 for missing data points
+- Fix the bug of stacked areas which have yAxisId different from "0"
+- Fix the spelling error of AniamtionDecorator
+
+### Docs
+
+- Update webpack.config.js, to support AMD
+
+## 0.13.4 (Aug 24, 2016)
+
+### Feat
+
+- Add cartesian Component ReferenceArea
+
+### Refactor
+
+- Refactor ResponsiveContainer and support minHeight, minWidth, aspect in ResponsiveContainer
+
+### Fix
+
+- Fix the position of Bar for charts which have multiple y-axes
+
+## 0.13.3 (Aug 17, 2016)
+
+### Feat
+
+- Support the functionality that syncs multiple categorical charts when mouse enter, move, leave a chart, or when change the brush of one chart
+
+### Fix
+
+- Fix the bug of stack offset function - "sign"
+- Fix the propTypes or legendType
+
+## 0.13.2 (Aug 15, 2016)
+
+### Feat
+
+- Add an option "sign" to the props stackOffset in BarChart and AreaChart which allows the bars and areas to be stacked according to the sign of value.
+
+### Fix
+
+- Fix the bug of legend in ScatterChart and refactor symbols.
+
+## 0.13.1 (Aug 08, 2016)
+
+### Fix
+
+- Fix the bug that tooltip did not show up for pie chart while using nameKey and valueKey
+
+### Refactor
+
+- Refactor Brush as controlled component
+
+## 0.13.0 (Aug 03, 2016)
+
+### Fix
+
+- Ensured all tooltip-related state gets reset upon receiving new data for all the charts
+
+### feat
+
+- Support smooth curve in Scatter
+- Support props connectNulls in Area, Line, and Curve,
+
+### refactor
+
+- Refactor animation of Area
+
+## 0.12.8 (Aug 01, 2016)
+
+### fix
+
+- Fix the bug of getTicksOfScale
+- Fix the bug of radius of ClipPath is so small that some texts of Pie is covered
+
+## 0.12.7 (July 25, 2016)
+
+### feat
+
+- Add itemSorter to tooltips
+- add props allowDecimals in XAxis and YAxis
+
+## 0.12.6 (July 21, 2016)
+
+### feat
+
+- Support Tooltip of RadarChart
+
+### fix
+
+- Fix the initial value of state isAnimationFinished in Line and Area
+- Fix the spelling error, pressentation => presentation (CartesianAxis)
+- Tweak text in RadarSpec
+
+## 0.12.5 (July 12, 2016)
+
+### feat
+
+- Add paddingAngle in Pie, fix #142
+
+### deps
+
+- update version of react, fix #138, fix #103
+
+## 0.12.4 (July 8, 2016)
+
+### fix
+
+- Fix the bug of calculation accuracy in IE(Sector)
+- Remove unneed props "formatter" in Area and Bar
+- Fix props which can be supported by html tags and svg tags
+
+### refactor
+
+- Support multiple activeIndex in Pie
+
+### deps
+
+- Update d3-scale and d3-shape to the latest version
+- Update version of react-smooth and recharts-scale
+- Restrict the version of react to '~15.1.0'
+
+## 0.12.3 (June 30, 2016)
+
+### fix
+
+- Fix the bug that no animation when data change, but points of Line are the same
+
+### refactor
+
+- Remove xAxisMap and yAxisMap in ReferenceDot and ReferenceLine
+
+## 0.12.2 (June 29, 2016)
+
+### feat
+
+- Add margin props in Sankey to avoid outer-clip
+- Add shape props in ReferenceDot
+
+### fix
+
+- Fix the width and height of wrapper
+
+## 0.12.1 (June 24, 2016)
+
+### fix
+
+- Fix the bug with a hack method that global css will affect the width and height of Legend, Tooltip
+
+## 0.12.0 (June 23, 2016)
+
+### feat
+
+- Add padding in XAxis and YAxis
+- Support minPointSize in Bar
+- Support "dataMin - 110" and "dataMax + 100" in the domain of numeric axis
+
+### refactor
+
+- Refactor Treemap, change ratio to aspectRatio
+
+### fix
+
+- Fix the bug of axisId in BarChart
+- Fix the bug of tooltip's position in BarChart
+- Fix PropTypes of `type` in `Area`
+
+## 0.11.0 (June 17, 2016)
+
+### feat
+
+- Add Sankey
+
+### fix
+
+- Fix the bug of Area when the data break off in some points
+- Fix the bug of ticks when 0 in ticks
+
+### refactor
+
+- Refactor the payload of tooltip, and the props of activeDot in AreaChart
+
+## 0.10.10 (June 13, 2016)
+
+### fix
+
+- Fix the position of labels in Bar
+
+## 0.10.9 (June 12, 2016)
+
+### refactor
+
+- Use react-container-dimensions to refactor ResponsiveContainer, close #104, close #105
+
+## 0.10.8 (June 2, 2016)
+
+### feat
+
+- Support any svg elements in the charts, such as defs, linearGradient
+
+## 0.10.7 (May 30, 2016)
+
+### fix
+
+- Fix the bug of Brush when data or the size of container changes.
+
+## 0.10.6 (May 25, 2016)
+
+### feat
+
+- Add customized event handlers in BarChart
+- Add curveMonotoneX and curveMonotoneY in Curve and Line
+- Pass stackOffset type as an optional parameter for categorical chart
+- Add `isFront` in ReferenceLine and ReferenceDot to support auxiliary information at differents z-index
+
+### fix
+
+- Fix legend position with margin
+
+## 0.10.5 (May 9, 2016)
+
+### feat
+
+- Support more interpolations in Curve, Line
+- Allow to set custom tick formatter function for Brush start/end index
+
+## 0.10.4 (May 5, 2016)
+
+### feat
+
+- support animation when data update
+
+### refactor
+
+- refactor event handlers in charts
+
+### fix
+
+- fix tooltip position in BarChart
+
+## 0.10.3 (May 4, 2016)
+
+### fix
+
+- fix bug of ReactUtils in Firefox 31
+
+## 0.10.2 (May 4, 2016)
+
+### refactor
+
+- refactor data in Pie which was modified internally
+
+## 0.10.1 (April 27, 2016)
+
+### feat
+
+- Support Tooltip in Treemap
+
+### fix
+
+- Rename `Symbol` to `Symbols`
+- Fix the key of `activeDot` in `AreaChart`
+
+## 0.10.0 (April 21, 2016)
+
+### refactor
+
+- Refactor _ticks_ specified in `XAxis`, `YAxis`
+- Use area of `Symbol` to show the size of number in ScatterChart
+- Refactor the `activeShape` in `Scatter`
+
+### feat
+
+- Add `Symbol` and support different `Symbol` in ScatterChart
+
+### fix
+
+- Fix the content of legend in `PieChart`
+- Fix the crush bug when categorical axis has duplicate labels
+- Fix the bug of calculating tick width
+
+## 0.9.3 (April 12, 2016)
+
+### deps
+
+- Update react-smooth to 0.1.4
+
+## 0.9.2 (April 12, 2016)
+
+### deps
+
+- Update react to 15.0.0
+
+## 0.9.1 (April 8, 2016)
+
+### fix
+
+- Fix the bug of bar animation
+
+### deps
+
+- update version of rechats-scale, and babel-eslint
+
+## 0.9.0 (April 7, 2016)
+
+### refactor
+
+- Remove default event handler in Pie, and add `activeIndex` to let user control the active sector
+- Remove detectElementResize
+- Add activeDot in Line and Area
+
+### fix
+
+- Fix the bug of updating line when the length of line is zero at first
+- Fix the base value of AreaChart which was set to be 0 before
+
+## 0.8.8 (March 25, 2016)
+
+### refactor
+
+- Support fixed value of width or height in ResponsiveContainer
+
+## 0.8.7 (March 21, 2016)
+
+### refactor
+
+- Don't overwrite payload in Legend when customized payload has been setted
+
+## 0.8.6 (March 09, 2016)
+
+### refactor
+
+- Use detectElementResize in react-virtualized to refactor ResponsiveContainer
+
+### fix
+
+- Fix ssr render bug of CartesianAxis
+
+## 0.8.5 (March 08, 2016)
+
+### feat
+
+- Add support of function type customized element
+
+### fix
+
+- fix the props labelLine in Pie
+- fix the bug of PureRender
+
+### test
+
+- Add more test cases
+
+## 0.8.4 (March 02, 2016)
+
+### refactor
+
+- Refactor the implementation type of renderPolygon in `Radar`
+- Refactor code in `Treemap`
+- Remove `invariant` and add `LogUtils`
+
+### feat
+
+- Add animation of Area, Radar, RadialBar, Scatter
+- Add label formatter to default tooltip
+- Add props labelLine in `Pie`
+- Add Cell of `Pie` to set different options for each sector
+- Add Cell support in `Bar`, `RadialBar`
+
+### fix
+
+- Fix Pie chart Label position, When using custom label It was not rendering as part of the curve group.
+- Fix `isAnimationActive` props in `Area`
+
+## 0.8.3 (February 25, 2016)
+
+### refactor
+
+- refactor CartesianChart to a high order component, move some function to /util/CartesianUtils which can be used in ScatterChart.
+- Simplify ComposedChart, remove duplicated code
+- use `filterEventAttributes` to add events props
+- cancel selecting line and area in LineChart, AreaChart, ComposedChart
+
+## 0.8.2 (February 24, 2016)
+
+### fix
+
+- rollback last fix of Line animation from value
+
+## 0.8.1 (February 24, 2016)
+
+### fix
+
+- fix the bug of Line animation from value
+
+## 0.8.0 (February 22, 2016)
+
+### feat
+
+- implement ReferenceDot in cartesian charts
+- support alwaysShow of ReferenceLine and ReferenceDot
+
+### refactor
+
+- refactor domain of CartesianAxis and PolarRadiusAxis
+- refactor this props name in ReferenceLine
+
+### fix
+
+- fix the bug of calculate extent in RadarChart
+- fix some bugs of server side rendering when document is called
+
+## 0.7.0 (February 17, 2016)
+
+### UI
+
+- feat: support dasharray line animation
+- refactor(CartesianAxis, PolarAngleAxis, PolarRadiusAxis):rename label to tick
+- feat(label): add label of CartesianAxis, PolarRadiusAxis, ReferenceLine
+- feat: Implement tooltip for PieChart
+- feat:Implement tooltip for RadialBarChart
+- deps(d3-scale,d3-shape,oui-dom-util): 1.update version of d3-scale, d3-shape, oui-dom-util 2.update some api of d3-scale
+
+## 0.6.3 (February 10, 2016)
+
+### UI
+
+- refactor(Legend): refactor the location of legend
+- fix(CartesianChart,CartesianAxis): 1. fix the bug of dataStartIndex && dataEndIndex when the length of data was changed 2. fix the default value of tickFormatter
+- fix(cartesian/Line.js): fix Line animation bug
+
+## 0.6.2 (February 9, 2016)
+
+### UI
+
+- feat: use lodash `isEqual` write new pureRender
+
+## 0.6.1 (February 5, 2016)
+
+### UI
+
+- fix(Pie, RadialBarChart): fix the default value of cx, cy, innerRadius, outerRadius
+
+## 0.6.0 (February 5, 2016)
+
+### UI
+
+- refactor: rename AdaptionWrapper to ResponsiveContainer
+- refactor: delete some repeated codes, and use polarToCartesian in PolarUtils
+- fix: update the defaultProps of cx, cy, innerRadius, outerRadius
+- fix(Sector, AdaptionWrapper):1. fix the bug of Sector when innerRadius is 0 2. fix the bug of unbind event when component is unmounted
+- feat(util): use lodash replace utils
+
+## 0.5.2 (February 4, 2016)
+
+### UI
+
+- fix(RadarChart): fix the bug of unreasonable default value for radius in PolarAngleAxis
+
+### Docs
+
+- chore: change main and jsnext:main in package.json
+
+## 0.5.1 (February 4, 2016)
+
+### UI
+
+- feat: support percentage string in the props(cx, cy, innerRadius, outerRadius) of RadarChart, PieChart, RadialChart
+- fix(PolarRadiusAxis): add props domain
+- refactor(CartesianAxis): remove unneeded props domain
+
+### Docs
+
+- chore: optimize npm script commands
+- chore: update pkg
+
+## 0.5.0 (February 3, 2016)
+
+### UI
+
+- feat(AdaptionWrapper): add AdaptionWrapper to make charts adapt to the size of parent dom
+- refactor: directory structure adjustment
+- fix(LineChart, CartesianChart): 1.fix the bug of margin when only part of the attributes are specified 2.fix the bug of number axis when domain is specified 3.fix the bug of category number when no dataKey is specified 4.format the code in README.md
+- refactor(treemap): support tree structure data; changed props that pass to shape
+
+### Test
+
+- test: 1.rename some test files 2.add test case of LodashUtil
+- test(treemap): modified treemap test
+
+### Docs
+
+- deps: add dependence oui-dom-utils
+- chore(README.md): add syntax highlighting to the readme
+- chore(package.json): add keyword react-component
+
+## 0.4.9 (February 2, 2016)
+
+### UI
+
+- refactor(CartesianAxis, PolarAngleAxis): change props name "orient" to "orientation"
+- refactor(Line, Bar, Pie): refactor animation using new react-smooth
+- refactor(Pie, RidalBar): remove the props clockWise, and add the props endAngle
+
+### Test
+
+- test(Line, Bar, Radar, Scatter): add test case
+
+## 0.4.7 (February 1, 2016)
+
+### UI
+
+- refactor(RadarChart, Radar, PolarAngleAxis, PolarRadiusAxis): refactor the components of Radar
+- refactor(classNames): refactor the method of package a className
+- refactor(Pie): add nameKey in Pie
+
+## 0.4.6 (January 29, 2016)
+
+### UI
+
+- refactor(Legend): refactor the legend in all the charts, change the location method of legend
+- feat(radar): add new RadarChart with the new component used in Chart, like PolarAngleAxis PolarRadiusAxis PolarGrid Polygon ex
+
+### Test
+
+- feat(test): add test for charts, chartWrappers, components, and shapes
+
+## 0.4.5 (January 29, 2016)
+
+### UI
+
+- fix(Curve): fix the bug of curve defined function
+- fix(ComposedChart): fix the bug of bar position when a line and a bar display a same group of data.
+- chore(webpack.config.js): add react, react-dom, react-dom-server to external
+- deps(react, react-dom): update version to v0.14.7
+
+## 0.4.4 (January 28, 2016)
+
+### Dev
+
+- chore(webpack.config.js): add build command
+
+## 0.4.3 (January 28, 2016)
+
+### UI
+
+- deps(recharts-scale, react-smooth): update version of recharts-scale and react-smooth
+- refactor(Bar, RadialBar, TreemapChart, Tooltip): rename the props customContent
+
+## 0.4.2 (January 28, 2016)
+
+### UI
+
+- Add support of stack value in BarChart, AreaChart, ComposedChart
+
+## 0.4.1 (January 27, 2016)
+
+### UI
+
+- Change name of the props in Tooltip, Legend
+- Fix the bug of customized label element in CartesianAxis
+- Remove repeated, meaningless constructor functions
+
+## 0.4.0 (January 26, 2016)
+
+### UI
+
+- Refactor some components, include CartesianAxis, Legend, Tooltip etc, to unify some props name.
