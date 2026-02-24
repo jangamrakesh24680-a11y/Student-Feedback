@@ -1,82 +1,52 @@
-<p align="center">
-  <a href="https://github.com/lucide-icons/lucide">
-    <img src="https://lucide.dev/package-logos/lucide-react.svg" alt="Lucide icon library for React applications." width="540">
-  </a>
-</p>
+![](./docs/public/og.png)
 
-<p align="center">
-Lucide icon library for React applications.
-</p>
+# es-toolkit &middot; [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/toss/slash/blob/main/LICENSE) [![codecov](https://codecov.io/gh/toss/es-toolkit/graph/badge.svg?token=8N5S3AR3C7)](https://codecov.io/gh/toss/es-toolkit) [![NPM badge](https://img.shields.io/npm/v/es-toolkit?logo=npm)](https://www.npmjs.com/package/es-toolkit) [![JSR badge](https://jsr.io/badges/@es-toolkit/es-toolkit)](https://jsr.io/@es-toolkit/es-toolkit) [![Discord Badge](https://discord.com/api/guilds/1281071127052943361/widget.png?style=shield)](https://discord.gg/vGXbVjP2nY)
 
-<div align="center">
+English | [한국어](https://github.com/toss/es-toolkit/blob/main/README-ko_kr.md) | [简体中文](https://github.com/toss/es-toolkit/blob/main/README-zh_hans.md) | [日本語](https://github.com/toss/es-toolkit/blob/main/README-ja_jp.md)
 
-  [![npm](https://img.shields.io/npm/v/lucide-react?color=blue)](https://www.npmjs.com/package/lucide-react)
-  ![NPM Downloads](https://img.shields.io/npm/dw/lucide-react)
-  [![GitHub](https://img.shields.io/github/license/lucide-icons/lucide)](https://lucide.dev/license)
-</div>
+es-toolkit is a state-of-the-art, high-performance JavaScript utility library with a small bundle size and strong type annotations.
 
-<p align="center">
-  <a href="https://lucide.dev/guide/">About</a>
-  ·
-  <a href="https://lucide.dev/icons/">Icons</a>
-  ·
-  <a href="https://lucide.dev/guide/packages/lucide-react">Documentation</a>
-  ·
-  <a href="https://lucide.dev/license">License</a>
-</p>
+- es-toolkit offers a variety of everyday utility functions with modern implementations, such as [debounce](https://es-toolkit.dev/reference/function/debounce.html), [delay](https://es-toolkit.dev/reference/promise/delay.html), [chunk](https://es-toolkit.dev/reference/array/chunk.html), [sum](https://es-toolkit.dev/reference/math/sum.html), and [pick](https://es-toolkit.dev/reference/object/pick.html).
+- Designed with performance in mind, es-toolkit achieves [2-3× better performance](https://es-toolkit.dev/performance.html) in modern JavaScript environments.
+- es-toolkit supports tree shaking out of the box, and [reduces JavaScript code by up to 97%](https://es-toolkit.dev/bundle-size.html) compared to other libraries.
+- es-toolkit offers a complete compatibility layer to seamlessly replace lodash, available as [es-toolkit/compat](https://es-toolkit.dev/compatibility.html).
+- es-toolkit includes built-in TypeScript support, with straightforward yet robust types. It also provides useful type guards such as [isNotNil](https://es-toolkit.dev/reference/predicate/isNotNil.html).
+- es-toolkit is trusted and used by popular open-source projects like [Storybook](https://github.com/storybookjs/storybook/blob/9d862798d666678cc4822e857c00bbd744169ced/code/core/package.json#L358), Recharts, ink, and CKEditor.
+- es-toolkit is battle-tested with 100% test coverage, ensuring reliability and robustness.
 
-# Lucide React
+## Examples
 
-Implementation of the lucide icon library for React applications.
+```tsx
+// import from '@es-toolkit/es-toolkit' in jsr.
+import { chunk, debounce } from 'es-toolkit';
 
-## Installation
+const debouncedLog = debounce(message => {
+  console.log(message);
+}, 300);
 
-```sh
-pnpm add lucide-react
+// This call will be debounced
+debouncedLog('Hello, world!');
+
+const array = [1, 2, 3, 4, 5, 6];
+const chunkedArray = chunk(array, 2);
+
+console.log(chunkedArray);
+// Output: [[1, 2], [3, 4], [5, 6]]
 ```
 
-```sh
-npm install lucide-react
-```
+## Contributing
 
-```sh
-yarn add lucide-react
-```
+We welcome contribution from everyone in the community. Read below for detailed contribution guide.
 
-```sh
-bun add lucide-react
-```
-
-## Documentation
-
-For full documentation, visit [lucide.dev](https://lucide.dev/guide/packages/lucide-react)
-
-## Community
-
-Join the [Discord server](https://discord.gg/EH6nSts) to chat with the maintainers and other users.
+[CONTRIBUTING](https://github.com/toss/es-toolkit/blob/main/.github/CONTRIBUTING.md)
 
 ## License
 
-Lucide is licensed under the ISC license. See [LICENSE](https://lucide.dev/license).
+MIT © Viva Republica, Inc. See [LICENSE](./LICENSE) for details.
 
-## Sponsors
-
-<a href="https://vercel.com?utm_source=lucide&utm_campaign=oss">
-  <img src="https://lucide.dev/vercel.svg" alt="Powered by Vercel" width="200" />
+<a title="Toss" href="https://toss.im">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://static.toss.im/logos/png/4x/logo-toss-reverse.png">
+    <img alt="Toss" src="https://static.toss.im/logos/png/4x/logo-toss.png" width="100">
+  </picture>
 </a>
-
-<a href="https://www.digitalocean.com/?refcode=b0877a2caebd&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://lucide.dev/digitalocean.svg" width="200" alt="DigitalOcean Referral Badge" /></a>
-
-[//]: <> (Open Collective backers)
-### Awesome backers 🍺
-
-<a href="https://github.com/pdfme/pdfme"><img src="https://lucide.dev/sponsors/pdfme.svg" width="180" alt="pdfme – Open-source PDF generation library built with TypeScript and React." /></a>
-<a href="https://www.paxhistoria.co/"><img src="https://lucide.dev/sponsors/paxhistoria.svg?" width="180" alt="Pax Historia – An alternate history sandbox game" /></a>
-
-### Backers ☕
-
-<a href="https://www.fina.money/"><img src="https://lucide.dev/sponsors/fina-money.png" width="180" alt="Fina Money – Modular Finance Tracker" /></a>
-
-### Other contributors 💸
-
-You can find all our past and non-recurring financial contributors at [our Open Collective page](https://opencollective.com/lucide-icons).
